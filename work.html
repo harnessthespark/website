@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Solutions - Harness the Spark</title>
+    <link href="style.css" rel="stylesheet" />
+    <style>
+      .page-header {
+        padding: var(--spacing-xl) 0;
+        text-align: center;
+      }
+      .page-header h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        margin-bottom: var(--spacing-sm);
+      }
+      .content-section {
+        padding: var(--spacing-xl) 0;
+        min-height: auto;
+      }
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: var(--spacing-lg);
+        margin-top: var(--spacing-xl);
+      }
+      .service-card {
+        background: rgba(30, 30, 30, 0.8);
+        padding: var(--spacing-lg);
+        border-radius: var(--radius-md);
+        border: 1px solid rgba(228, 159, 75, 0.2);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        transform-style: preserve-3d;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+      .service-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        border-radius: 10px;
+        background: linear-gradient(135deg, rgba(215, 24, 148, 0.1), rgba(228, 159, 75, 0.1));
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        z-index: -1;
+      }
+      .service-card:hover {
+        transform: translateY(-10px) translateZ(20px);
+        box-shadow: 
+          0 20px 40px rgba(215, 24, 148, 0.3),
+          0 10px 20px rgba(228, 159, 75, 0.2),
+          0 0 60px rgba(215, 24, 148, 0.15);
+        border-color: var(--accent-orange);
+        background: rgba(40, 40, 40, 0.9);
+      }
+      .service-card:hover::before {
+        opacity: 1;
+      }
+      .service-card h3 {
+        color: var(--accent-orange);
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      .service-card h4 {
+        color: var(--accent-pink);
+        font-size: 1.2rem;
+        margin: 1.5rem 0 0.5rem 0;
+      }
+      .service-card p {
+        color: var(--text-light);
+        line-height: 1.8;
+        margin-bottom: 1rem;
+      }
+      .service-features {
+        list-style: none;
+        padding: 0;
+        margin-top: 1rem;
+      }
+      .service-features li {
+        padding: 0.5rem 0;
+        color: var(--text-dim);
+        position: relative;
+        padding-left: 1.5rem;
+      }
+      .service-features li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--accent-pink);
+      }
+      .service-card-content {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+      .service-card-bottom {
+        margin-top: auto;
+        padding-top: 1rem;
+      }
+      .highlight-section {
+        background: linear-gradient(135deg, rgba(215, 24, 148, 0.05), rgba(228, 159, 75, 0.05));
+        padding: 3rem;
+        border-radius: 15px;
+        margin: 3rem 0;
+        text-align: center;
+      }
+      .highlight-section h2 {
+        font-size: clamp(2rem, 4vw, 3rem);
+        margin-bottom: 1.5rem;
+      }
+      .price-tag {
+        display: inline-block;
+        background: var(--accent-orange);
+        color: white;
+        padding: 0.5rem 1rem;
+        border-radius: 20px;
+        font-weight: 600;
+        margin-top: 1rem;
+      }
+      .service-main-section {
+        margin: 4rem 0;
+      }
+      .service-main-section h2 {
+        font-size: clamp(2.5rem, 4vw, 3.5rem);
+        text-align: center;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, var(--accent-pink), var(--accent-orange));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .tagline {
+        text-align: center;
+        font-size: 1.3rem;
+        color: var(--text-dim);
+        margin-bottom: 3rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Canvas for animation -->
+    <canvas id="sparksCanvas"></canvas>
+    
+    <nav>
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="index.html" class="logo">
+            <img src="logo.png" alt="Harness the Spark" class="logo-icon">
+            <div class="logo-text">
+              <span class="text-main">Harness the Spark</span>
+            </div>
+          </a>
+          <div class="link-container">
+            <a href="intro.html">About</a>
+            <a href="contactus.html">Contact</a>
+            <a href="work.html">Solutions</a>
+            <a href="insights.html">News</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="page-header">
+      <div class="container">
+        <h1>Stop Fixing Yourself.<br>Start Fixing Work.</h1>
+        <p class="cta-text">Whether you're looking to level up your career or transform how your business finds talent, I'm here to help</p>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <div class="container">
+        
+        <!-- Candidates Section -->
+        <div class="service-main-section">
+          <h2>👑 For Candidates</h2>
+          <p class="tagline">Land the role you want with expert guidance</p>
+          
+          <div class="services-grid">
+            <div class="service-card">
+              <div class="service-card-content">
+                <h3>💡 CV Power Hour</h3>
+                <p>Get unstuck fast</p>
+                <ul class="service-features">
+                  <li>CV emergency room</li>
+                  <li>LinkedIn quick fixes</li>
+                  <li>"Why am I getting rejected?" diagnosis</li>
+                  <li>Action plan you can implement today</li>
+                  <li>Same-day confidence boost</li>
+                </ul>
+              </div>
+              <div class="service-card-bottom">
+                <span class="price-tag">£110</span>
+                <button onclick="location.href='book.html'" style="background: linear-gradient(135deg, var(--accent-pink), var(--accent-orange)); color: white; padding: 0.5rem 1.5rem; border: none; border-radius: 25px; font-weight: 600; cursor: pointer; margin-top: 1rem; width: 100%; transition: all 0.3s ease;">Book Now</button>
+              </div>
+            </div>
+
+            <div class="service-card">
+              <div class="service-card-content">
+                <h3>🚀 Career Accelerator</h3>
+                <p>Land the role you want</p>
+                <ul class="service-features">
+                  <li>Complete CV & LinkedIn overhaul</li>
+                  <li>Interview prep from a recruiter with 13 years' experience</li>
+                  <li>Salary negotiation strategy</li>
+                  <li>30-day support</li>
+                  <li>Personal brand positioning</li>
+                </ul>
+              </div>
+              <div class="service-card-bottom">
+                <span class="price-tag">£297</span>
+                <button onclick="location.href='book.html'" style="background: linear-gradient(135deg, var(--accent-pink), var(--accent-orange)); color: white; padding: 0.5rem 1.5rem; border: none; border-radius: 25px; font-weight: 600; cursor: pointer; margin-top: 1rem; width: 100%; transition: all 0.3s ease;">Book Now</button>
+              </div>
+            </div>
+          </div>
+
+        <!-- Divider Section -->
+        <div style="margin: 4rem 0; text-align: center;">
+          <div style="width: 1000 px; height: 2px; background: linear-gradient(90deg, var(--accent-pink), var(--accent-orange)); margin: 0 auto; border-radius: 2px;"></div>
+        </div>
+
+        <!-- Companies Section -->
+        <div class="service-main-section">
+          <h2>🔥 For Companies</h2>
+          <p class="tagline">Fix your hiring problems and unlock hidden talent</p>
+          
+          <div class="services-grid">
+            <div class="service-card">
+              <div class="service-card-content">
+                <h3>⚡ Power Hour</h3>
+                <p>Fix your urgent hiring problem</p>
+                <ul class="service-features">
+                  <li>Unstick that impossible role</li>
+                  <li>Emergency job spec rewrite</li>
+                  <li>Salary sense-check</li>
+                  <li>Quick wins you can implement today</li>
+                  <li>Same-day clarity on next steps</li>
+                </ul>
+              </div>
+              <div class="service-card-bottom">
+                <span class="price-tag">£199</span>
+                <button onclick="location.href='book.html'" style="background: linear-gradient(135deg, var(--accent-pink), var(--accent-orange)); color: white; padding: 0.5rem 1.5rem; border: none; border-radius: 25px; font-weight: 600; cursor: pointer; margin-top: 1rem; width: 100%; transition: all 0.3s ease;">Book Now</button>
+              </div>
+            </div>
+
+            <div class="service-card">
+              <div class="service-card-content">
+                <h3>🚀 Hiring Intensive</h3>
+                <p>Transform your recruitment in one day</p>
+                <ul class="service-features">
+                  <li>Half-day intensive session</li>
+                  <li>Build your complete hiring process</li>
+                  <li>Interview training for your team</li>
+                  <li>Templates you'll use forever</li>
+                  <li>30-day Slack support</li>
+                </ul>
+              </div>
+              <div class="service-card-bottom">
+                <span class="price-tag">£997</span>
+                <button onclick="location.href='book.html'" style="background: linear-gradient(135deg, var(--accent-pink), var(--accent-orange)); color: white; padding: 0.5rem 1.5rem; border: none; border-radius: 25px; font-weight: 600; cursor: pointer; margin-top: 1rem; width: 100%; transition: all 0.3s ease;">Book Now</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Why Harness the Spark -->
+        <div class="highlight-section">
+          <h2>Why Harness the Spark?</h2>
+          <p><strong>We know where the system fails different thinkers—and how to fix it.</strong></p>
+          <ul style="list-style: none; padding: 0; margin: 2rem 0;">
+            <li style="margin: 1rem 0;">✨ <strong>13 years inside the recruitment machine</strong><br>Lived experience of navigating systems as a different thinker, plus insider knowledge of how to transform them</li>
+            <li style="margin: 1rem 0;">✨ <strong>Revolutionary approach to cognitive diversity</strong><br>We don't accommodate differences—we celebrate them as competitive advantages</li>
+            <li style="margin: 1rem 0;">✨ <strong>Real ROI, not empty promises</strong><br>Save £8-14k per role by fixing your hiring instead of paying recruitment fees</li>
+            <li style="margin: 1rem 0;">✨ <strong>Tailored to how YOUR mind works</strong><br>No forcing yourself into boxes that don't fit</li>
+            <li style="margin: 1rem 0;">✨ <strong>Evidence-based strategies</strong><br>Real cognitive science and lived experience, not outdated stereotypes</li>
+          </ul>
+          <p><strong>Ready to turn different thinking into your competitive edge?</strong></p>
+        </div>
+
+        <div class="highlight-section" style="margin-top: 4rem;">
+          <h2>Ready to transform your career or hiring?</h2>
+          <p>Let's talk about how Harness the Spark can help you</p>
+          <p><strong>Ready to get started?</strong></p>
+          <button onclick="window.location.href='book.html'" style="background: linear-gradient(135deg, var(--accent-pink), var(--accent-orange)); color: white; padding: 1rem 2rem; border: none; border-radius: 25px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin: 1rem; transition: all 0.3s ease;">Book Your Session</button>
+          <button onclick="window.location.href='contactus.html'" style="background: rgba(255, 255, 255, 0.1); color: var(--text-light); padding: 1rem 2rem; border: 1px solid rgba(228, 159, 75, 0.3); border-radius: 25px; font-size: 1.1rem; font-weight: 600; cursor: pointer; margin: 1rem; transition: all 0.3s ease;">Ask Questions First</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2025 Harness the Spark. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

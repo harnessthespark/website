@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harness the Spark</title>
+    <link href="style.css" rel="stylesheet" />
+  </head>
+  <body>
+    <nav>
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="index.html" class="logo">
+            <img src="logo.png" alt="Harness the Spark" class="logo-icon">
+            <div class="logo-text">
+              <span class="text-main">Harness the Spark</span>
+            </div>
+          </a>
+          <div class="link-container">
+            <a href="intro.html">About</a>
+            <a href="contactus.html">Contact</a>
+            <a href="work.html">Solutions</a>
+            <a href="insights.html">News</a>
+          </div>
+    </nav>
+
+    <!-- Canvas for animation -->
+    <canvas id="sparksCanvas"></canvas>
+
+    <div class="hero-section">
+      <div class="container">
+        <h1>News & Insights</h1>
+        <p class="cta-text">Revolutionary thinking for careers and hiring</p>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <div class="container">
+        
+        <!-- Coming Soon: SparkHub -->
+        <div style="background: linear-gradient(135deg, rgba(215, 24, 148, 0.1), rgba(228, 159, 75, 0.1)); padding: 3rem; border-radius: 20px; margin: 3rem 0; text-align: center; border: 2px solid var(--accent-orange);">
+          <h2 style="font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(135deg, #d71894, #e49f4b); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">⚡ SparkHub: Coming Soon</h2>
+          
+          <p style="font-size: 1.3rem; color: #ccc; margin-bottom: 2rem; max-width: 800px; margin-left: auto; margin-right: auto;">
+            The revolutionary platform where different thinkers connect, companies find hidden talent, and cognitive diversity drives innovation.
+          </p>
+          
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin: 2rem 0; max-width: 900px; margin-left: auto; margin-right: auto;">
+            <div style="background: rgba(30, 30, 30, 0.8); padding: 2rem; border-radius: 15px; border: 1px solid rgba(228, 159, 75, 0.2);">
+              <h3 style="color: var(--accent-pink); margin-bottom: 1rem;">🎯 For Professionals</h3>
+              <ul style="list-style: none; padding: 0; text-align: left; color: var(--text-dim);">
+                <li style="margin: 0.5rem 0;">✓ Connect with like-minded professionals</li>
+                <li style="margin: 0.5rem 0;">✓ Share experiences and strategies</li>
+                <li style="margin: 0.5rem 0;">✓ Access exclusive resources</li>
+                <li style="margin: 0.5rem 0;">✓ Find mentors and mentees</li>
+              </ul>
+            </div>
+            
+            <div style="background: rgba(30, 30, 30, 0.8); padding: 2rem; border-radius: 15px; border: 1px solid rgba(228, 159, 75, 0.2);">
+              <h3 style="color: var(--accent-orange); margin-bottom: 1rem;">🚀 For Companies</h3>
+              <ul style="list-style: none; padding: 0; text-align: left; color: var(--text-dim);">
+                <li style="margin: 0.5rem 0;">✓ Discover untapped talent pools</li>
+                <li style="margin: 0.5rem 0;">✓ Build truly diverse teams</li>
+                <li style="margin: 0.5rem 0;">✓ Access hiring best practices</li>
+                <li style="margin: 0.5rem 0;">✓ Transform your recruitment</li>
+              </ul>
+            </div>
+          </div>
+          
+          <div style="background: rgba(68, 255, 136, 0.1); padding: 2rem; border-radius: 15px; margin: 2rem 0;">
+            <h4 style="color: var(--accent-orange); margin-bottom: 1rem;">🎉 Launch Special</h4>
+            <p style="color: var(--text-light); margin-bottom: 1rem;">Be among the first 100 members and get:</p>
+            <ul style="list-style: none; padding: 0; color: var(--text-dim);">
+              <li>✨ Lifetime founding member status</li>
+              <li>✨ Free access to all premium features</li>
+              <li>✨ Direct input on platform development</li>
+              <li>✨ Exclusive networking events</li>
+            </ul>
+          </div>
+          
+          <div style="margin-top: 2rem;">
+            <button onclick="location.href='contactus.html'" style="background: linear-gradient(135deg, #d71894, #e49f4b); color: white; padding: 15px 40px; border: none; border-radius: 30px; font-size: 1.2rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(215, 24, 148, 0.3); margin-right: 1rem;">
+              Join the Waitlist
+            </button>
+            <p style="font-size: 0.9rem; color: var(--text-dim); margin-top: 1rem;">
+              Expected launch: Q2 2025 | Be the first to know when we go live
+            </p>
+          </div>
+        </div>
+
+        <!-- Newsletter Signup -->
+        <div style="background: rgba(30, 30, 30, 0.8); padding: 2rem; border-radius: 15px; border: 1px solid rgba(228, 159, 75, 0.2); text-align: center; margin: 3rem 0;">
+          <h3 style="color: var(--accent-orange); margin-bottom: 1rem;">Stay Connected</h3>
+          <p style="color: var(--text-dim); margin-bottom: 2rem;">Get updates on SparkHub launch, career insights, and hiring revolution strategies.</p>
+          
+          <div style="max-width: 400px; margin: 0 auto; display: flex; gap: 1rem;">
+            <input type="email" placeholder="your@email.com" style="flex: 1; padding: 1rem; background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(228, 159, 75, 0.3); border-radius: 5px; color: var(--text-light); font-family: inherit;">
+            <button onclick="location.href='contactus.html'" style="background: var(--accent-orange); color: white; padding: 1rem 2rem; border: none; border-radius: 5px; font-weight: 600; cursor: pointer; white-space: nowrap;">
+              Subscribe
+            </button>
+          </div>
+          
+          <p style="font-size: 0.8rem; color: var(--text-dim); margin-top: 1rem;">
+            No spam, just revolutionary insights. Unsubscribe anytime.
+          </p>
+        </div>
+
+        <!-- LinkedIn Content Hub -->
+        <div style="margin: 4rem 0;">
+          <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(135deg, #d71894, #e49f4b); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">💭 Latest Insights</h2>
+          <p style="text-align: center; color: var(--text-dim); font-size: 1.2rem; margin-bottom: 3rem;">Raw thoughts on careers, hiring, and cognitive diversity from the frontlines</p>
+          
+          <!-- Content Categories -->
+          <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap;">
+            <button onclick="filterContent('all')" class="content-filter active" data-filter="all" style="background: var(--accent-orange); color: white; border: none; padding: 0.75rem 1.5rem; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">All Posts</button>
+            <button onclick="filterContent('career')" class="content-filter" data-filter="career" style="background: rgba(215, 24, 148, 0.2); color: var(--accent-pink); border: 1px solid var(--accent-pink); padding: 0.75rem 1.5rem; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">Career Tips</button>
+            <button onclick="filterContent('hiring')" class="content-filter" data-filter="hiring" style="background: rgba(228, 159, 75, 0.2); color: var(--accent-orange); border: 1px solid var(--accent-orange); padding: 0.75rem 1.5rem; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">Hiring Insights</button>
+            <button onclick="filterContent('neurodiversity')" class="content-filter" data-filter="neurodiversity" style="background: rgba(68, 255, 136, 0.2); color: #44ff88; border: 1px solid #44ff88; padding: 0.75rem 1.5rem; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">Neurodiversity</button>
+            <button onclick="filterContent('rants')" class="content-filter" data-filter="rants" style="background: rgba(255, 68, 68, 0.2); color: #ff4444; border: 1px solid #ff4444; padding: 0.75rem 1.5rem; border-radius: 20px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">Industry Rants</button>
+          </div>
+
+          <!-- Content Grid -->
+          <div id="content-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 2rem;">
+            
+            <!-- Sample Content Cards - Replace with actual LinkedIn posts -->
+            <div class="content-card" data-category="career" style="background: rgba(30, 30, 30, 0.8); padding: 2rem; border-radius: 15px; border: 1px solid rgba(228, 159, 75, 0.2); transition: all 0.3s ease;">
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                <span style="background: var(--accent-pink); color: white; padding: 0.25rem 0.75rem; border-radius: 10px; font-size: 0.8rem; font-weight: 600;">CAREER</span>
+                <span style="color: var(--text-dim); font-size: 0.9rem;">19 hours ago</span>
+              </div>
+              <h3 style="color: var(--text-light); margin-bottom: 1rem; font-size: 1.2rem;">I called us all distinctly average - and it's liberating</h3>
+              <p style="color: var(--text-dim); line-height: 1.6; margin-bottom: 1.5rem;">Yesterday I called us all distinctly average. Three years ago, that idea would have terrified me. Now? It's the most liberating truth I've ever discovered. Tomorrow I'll tell you why...</p>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; gap: 1rem; color: var(--text-dim); font-size: 0.9rem;">
+                  <span>💬 2 comments</span>
+                  <span>🔄 1 repost</span>
+                  <span>❤️ 8 likes</span>
+                </div>
+                <a href="https://www.linkedin.com/in/lisagills/recent-activity/all/" style="color: var(--accent-orange); text-decoration: none; font-weight: 600;">Read on LinkedIn →</a>
+              </div>
+            </div>
+
+            <div class="content-card" data-category="rants" style="background: rgba(30, 30, 30, 0.8); padding: 2rem; border-radius: 15px; border: 1px solid rgba(228, 159, 75, 0.2); transition: all 0.3s ease;">
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                <span style="background: #ff4444; color: white; padding: 0.25rem 0.75rem; border-radius: 10px; font-size: 0.8rem; font-weight: 600;">RANT</span>
+                <span style="color: var(--text-dim); font-size: 0.9rem;">1 day ago</span>
+              </div>
+              <h3 style="color: var(--text-light); margin-bottom: 1rem; font-size: 1.2rem;">Seen enough of these job ads to last you a lifetime?</h3>
+              <p style="color: var(--text-dim); line-height: 1.6; margin-bottom: 1.5rem;">Fed up with unrealistic job ads? Rockstar-Unicorn-Ninja with 20 years experience in AI & Pi... Offering inflexible working, toxicity, and burn-out. The hiring process is broken...</p>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; gap: 1rem; color: var(--text-dim); font-size: 0.9rem;">
+                  <span>💬 2 comments</span>
+                  <span>🔄 1 repost</span>
+                  <span>❤️ 15 likes</span>
+                </div>
+                <a href="https://www.linkedin.com/in/lisagills/recent-activity/all/" style="color: var(--accent-orange); text-decoration: none; font-weight: 600;">Read on LinkedIn →</a>
+              </div>
+            </div>
+
+            <div class="content-card" data-category="neurodiversity" style="background: rgba(30, 30, 30, 0.8); padding: 2rem; border-radius: 15px; border: 1px solid rgba(228, 159, 75, 0.2); transition: all 0.3s ease;">
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                <span style="background: #44ff88; color: #0a0a0a; padding: 0.25rem 0.75rem; border-radius: 10px; font-size: 0.8rem; font-weight: 600;">NEURODIVERSITY</span>
+                <span style="color: var(--text-dim); font-size: 0.9rem;">1 week ago</span>
+              </div>
+              <h3 style="color: var(--text-light); margin-bottom: 1rem; font-size: 1.2rem;">Masking isn't professional development</h3>
+              <p style="color: var(--text-dim); line-height: 1.6; margin-bottom: 1.5rem;">When companies talk about "developing your executive presence" but what they really mean is "be less autistic in meetings"...</p>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; gap: 1rem; color: var(--text-dim); font-size: 0.9rem;">
+                  <span>💬 67 comments</span>
+                  <span>🔄 28 reposts</span>
+                  <span>❤️ 203 likes</span>
+                </div>
+                <a href="https://www.linkedin.com/in/lisagills/recent-activity/all/" style="color: var(--accent-orange); text-decoration: none; font-weight: 600;">Read on LinkedIn →</a>
+              </div>
+            </div>
+
+            <div class="content-card" data-category="rants" style="background: rgba(30, 30, 30, 0.8); padding: 2rem; border-radius: 15px; border: 1px solid rgba(228, 159, 75, 0.2); transition: all 0.3s ease;">
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                <span style="background: #ff4444; color: white; padding: 0.25rem 0.75rem; border-radius: 10px; font-size: 0.8rem; font-weight: 600;">RANT</span>
+                <span style="color: var(--text-dim); font-size: 0.9rem;">3 days ago</span>
+              </div>
+              <h3 style="color: var(--text-light); margin-bottom: 1rem; font-size: 1.2rem;">AI recruitment tools are making bias worse</h3>
+              <p style="color: var(--text-dim); line-height: 1.6; margin-bottom: 1.5rem;">Another day, another "revolutionary" AI tool that promises to remove bias while training on biased data from the same broken system...</p>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; gap: 1rem; color: var(--text-dim); font-size: 0.9rem;">
+                  <span>💬 91 comments</span>
+                  <span>🔄 42 reposts</span>
+                  <span>❤️ 267 likes</span>
+                </div>
+                <a href="https://www.linkedin.com/in/lisagills/recent-activity/all/" style="color: var(--accent-orange); text-decoration: none; font-weight: 600;">Read on LinkedIn →</a>
+              </div>
+            </div>
+
+            <div class="content-card" data-category="career" style="background: rgba(30, 30, 30, 0.8); padding: 2rem; border-radius: 15px; border: 1px solid rgba(228, 159, 75, 0.2); transition: all 0.3s ease;">
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                <span style="background: var(--accent-pink); color: white; padding: 0.25rem 0.75rem; border-radius: 10px; font-size: 0.8rem; font-weight: 600;">CAREER</span>
+                <span style="color: var(--text-dim); font-size: 0.9rem;">1 day ago</span>
+              </div>
+              <h3 style="color: var(--text-light); margin-bottom: 1rem; font-size: 1.2rem;">Do you think you're above average at your job?</h3>
+              <p style="color: var(--text-dim); line-height: 1.6; margin-bottom: 1.5rem;">Taking pride and feeling confident in our roles should be celebrated, but where does a healthy ego end and an inflated one begin? Poll results: 100% said Yes, 0% said No. 627 impressions...</p>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; gap: 1rem; color: var(--text-dim); font-size: 0.9rem;">
+                  <span>💬 11 votes</span>
+                  <span>👀 627 views</span>
+                  <span>❤️ 15 likes</span>
+                </div>
+                <a href="https://www.linkedin.com/in/lisagills/recent-activity/all/" style="color: var(--accent-orange); text-decoration: none; font-weight: 600;">Read on LinkedIn →</a>
+              </div>
+            </div>
+
+            <div class="content-card" data-category="hiring" style="background: rgba(30, 30, 30, 0.8); padding: 2rem; border-radius: 15px; border: 1px solid rgba(228, 159, 75, 0.2); transition: all 0.3s ease;">
+              <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                <span style="background: var(--accent-orange); color: white; padding: 0.25rem 0.75rem; border-radius: 10px; font-size: 0.8rem; font-weight: 600;">HIRING</span>
+                <span style="color: var(--text-dim); font-size: 0.9rem;">19 hours ago</span>
+              </div>
+              <h3 style="color: var(--text-light); margin-bottom: 1rem; font-size: 1.2rem;">After 13 years in recruitment, nothing ceases to amaze me</h3>
+              <p style="color: var(--text-dim); line-height: 1.6; margin-bottom: 1.5rem;">ChatGPT can write better job specs than most humans. Yet we're still asking for rockstar-unicorn-ninjas with impossible requirements. Meanwhile, genuine talent goes unnoticed because they don't tick arbitrary boxes...</p>
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; gap: 1rem; color: var(--text-dim); font-size: 0.9rem;">
+                  <span>💬 22 comments</span>
+                  <span>🔄 8 reposts</span>
+                  <span>❤️ 72 likes</span>
+                </div>
+                <a href="https://www.linkedin.com/in/lisagills/recent-activity/all/" style="color: var(--accent-orange); text-decoration: none; font-weight: 600;">Read on LinkedIn →</a>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Load More Button -->
+          <div style="text-align: center; margin-top: 3rem;">
+            <button onclick="loadMoreContent()" style="background: linear-gradient(135deg, rgba(215, 24, 148, 0.2), rgba(228, 159, 75, 0.2)); color: var(--accent-orange); border: 2px solid var(--accent-orange); padding: 1rem 2rem; border-radius: 25px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+              Load More Insights
+            </button>
+          </div>
+
+          <!-- Follow on LinkedIn CTA -->
+          <div style="background: linear-gradient(135deg, rgba(0, 119, 181, 0.1), rgba(228, 159, 75, 0.1)); padding: 2rem; border-radius: 15px; text-align: center; margin: 3rem 0; border: 1px solid #0077b5;">
+            <h3 style="color: var(--accent-orange); margin-bottom: 1rem;">💼 Follow for Daily Insights</h3>
+            <p style="color: var(--text-dim); margin-bottom: 2rem;">Get unfiltered thoughts on careers, hiring, and cognitive diversity delivered to your LinkedIn feed.</p>
+            <button onclick="window.open('https://www.linkedin.com/in/lisagills/', '_blank')" style="background: #0077b5; color: white; padding: 1rem 2rem; border: none; border-radius: 5px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+              Follow on LinkedIn
+            </button>
+            <p style="font-size: 0.9rem; color: var(--text-dim); margin-top: 1rem;">Join 10,000+ professionals who get the real talk about work</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <script>
+      function filterContent(category) {
+        const cards = document.querySelectorAll('.content-card');
+        const filters = document.querySelectorAll('.content-filter');
+        
+        // Update filter buttons
+        filters.forEach(filter => {
+          filter.classList.remove('active');
+          if (category === 'all') {
+            filter.style.background = 'rgba(215, 24, 148, 0.2)';
+            filter.style.color = 'var(--accent-pink)';
+            filter.style.border = '1px solid var(--accent-pink)';
+          }
+        });
+        
+        const activeFilter = document.querySelector(`[data-filter="${category}"]`);
+        activeFilter.classList.add('active');
+        if (category === 'all') {
+          activeFilter.style.background = 'var(--accent-orange)';
+          activeFilter.style.color = 'white';
+          activeFilter.style.border = 'none';
+        }
+        
+        // Filter content
+        cards.forEach(card => {
+          if (category === 'all' || card.dataset.category === category) {
+            card.style.display = 'block';
+            card.style.animation = 'fadeIn 0.3s ease';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+      
+      function loadMoreContent() {
+        // This would typically load more content from your CMS or API
+        // For now, show a placeholder
+        alert('This would load more LinkedIn posts! Connect your content management system here.');
+      }
+      
+      // Add hover effects to content cards
+      document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.content-card');
+        cards.forEach(card => {
+          card.addEventListener('mouseenter', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.boxShadow = '0 15px 40px rgba(215, 24, 148, 0.2)';
+          });
+          
+          card.addEventListener('mouseleave', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = 'none';
+          });
+        });
+      });
+    </script>
+
+    <footer>
+      <p>© 2025 Harness the Spark. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

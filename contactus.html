@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Harness the Spark</title>
+    <link href="style.css" rel="stylesheet" />
+    <style>
+      .page-header {
+        padding: 3rem 0;
+        text-align: center;
+      }
+      .page-header h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        margin-bottom: 1rem;
+      }
+      .content-section {
+        padding: 3rem 0;
+        min-height: auto;
+      }
+      .contact-form {
+        max-width: 600px;
+        margin: 0 auto;
+        background: rgba(30, 30, 30, 0.8);
+        padding: 2rem;
+        border-radius: 15px;
+        border: 1px solid rgba(228, 159, 75, 0.2);
+      }
+      .contact-form .form-group {
+        margin-bottom: 1.5rem;
+      }
+      .contact-form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--text-dim);
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .contact-form input,
+      .contact-form textarea,
+      .contact-form select {
+        width: 100%;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(228, 159, 75, 0.3);
+        border-radius: 5px;
+        color: var(--text-light);
+        font-family: inherit;
+        font-size: 1rem;
+      }
+      .contact-form textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+      .submit-btn {
+        background: linear-gradient(135deg, #d71894, #e49f4b);
+        color: white;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 25px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+        margin-top: 1rem;
+      }
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(215, 24, 148, 0.3);
+      }
+      .contact-info {
+        background: rgba(228, 159, 75, 0.1);
+        padding: 2rem;
+        border-radius: 15px;
+        margin: 3rem 0;
+        text-align: center;
+        border: 1px solid rgba(228, 159, 75, 0.2);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Canvas for animation -->
+    <canvas id="sparksCanvas"></canvas>
+    
+    <nav>
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="index.html" class="logo">
+            <img src="logo.png" alt="Harness the Spark" class="logo-icon">
+            <div class="logo-text">
+              <span class="text-main">Harness the Spark</span>
+            </div>
+          </a>
+          <div class="link-container">
+            <a href="intro.html">About</a>
+            <a href="contactus.html">Contact</a>
+            <a href="work.html">Solutions</a>
+            <a href="insights.html">News</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="page-header">
+      <div class="container">
+        <h1>The Talent Shortage Is Fake.<br>The Imagination Shortage Is Real.</h1>
+        <p class="cta-text">Ready to change how work works? Let's talk.</p>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <div class="container">
+        
+        <!-- Contact Form -->
+        <div class="contact-form">
+          <h2 style="text-align: center; margin-bottom: 2rem; color: var(--accent-orange);">Tell Me What's Broken</h2>
+          <p style="text-align: center; color: var(--text-dim); margin-bottom: 2rem;">Not in you. In their system. What needs to change?</p>
+          
+          <form id="contact-form">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" required placeholder="The real you, not the professional mask">
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required placeholder="your@email.com">
+            </div>
+            
+            <div class="form-group">
+              <label for="type">I'm reaching out as...</label>
+              <select id="type" name="type" required>
+                <option value="">Select...</option>
+                <option value="individual">An individual (career support)</option>
+                <option value="company">A company (hiring transformation)</option>
+                <option value="media">Media/Speaking opportunity</option>
+                <option value="partnership">Partnership/Collaboration</option>
+                <option value="other">Something else entirely</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="budget">Investment Range (if service inquiry)</label>
+              <select id="budget" name="budget">
+                <option value="">Optional...</option>
+                <option value="under-500">Under £500</option>
+                <option value="500-1000">£500 - £1,000</option>
+                <option value="1000-3000">£1,000 - £3,000</option>
+                <option value="3000-plus">£3,000+</option>
+                <option value="not-service">Not a service inquiry</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="urgency">Timeline</label>
+              <select id="urgency" name="urgency" required>
+                <option value="">Be honest...</option>
+                <option value="urgent">Urgent - this is costing me/us daily</option>
+                <option value="soon">Within the next few weeks</option>
+                <option value="planning">Planning for the future</option>
+                <option value="exploring">Just exploring options</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">What's Really Going On?</label>
+              <textarea id="message" name="message" required placeholder="Tell me about the problem you're trying to solve. What's broken? What would success look like? What have you tried that hasn't worked?"></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label for="found-how">How did you find me?</label>
+              <select id="found-how" name="found-how">
+                <option value="">Optional...</option>
+                <option value="linkedin">LinkedIn</option>
+                <option value="google">Google search</option>
+                <option value="referral">Someone referred me</option>
+                <option value="social">Social media</option>
+                <option value="event">Event/Speaking</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+            
+            <button type="submit" class="submit-btn">Send Message</button>
+            
+            <p style="text-align: center; font-size: 0.9rem; color: var(--text-dim); margin-top: 1rem;">
+              I typically respond within 24 hours. If it's urgent, say so in your message.
+            </p>
+          </form>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="contact-info">
+          <h3 style="color: var(--accent-orange); margin-bottom: 1rem;">Other Ways to Connect</h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 2rem; margin-top: 2rem;">
+            <div>
+              <h4 style="color: var(--accent-pink); margin-bottom: 0.5rem;">📧 Email</h4>
+              <p>lisa@harnessthespark.com</p>
+            </div>
+            <div>
+              <h4 style="color: var(--accent-pink); margin-bottom: 0.5rem;">📱 Phone</h4>
+              <p><a href="tel:+447809407417" style="color: var(--accent-orange);">07809 407 417</a></p>
+            </div>
+            <div>
+              <h4 style="color: var(--accent-pink); margin-bottom: 0.5rem;">💼 LinkedIn</h4>
+              <p><a href="https://www.linkedin.com/in/lisagills/" target="_blank" style="color: var(--accent-orange);">Connect with Lisa</a></p>
+            </div>
+            <div>
+              <h4 style="color: var(--accent-pink); margin-bottom: 0.5rem;">📅 Book Directly</h4>
+              <p><a href="book.html" style="color: var(--accent-orange);">Skip the form, book a session</a></p>
+            </div>
+          </div>
+          
+          <div style="margin-top: 2rem; padding-top: 2rem; border-top: 1px solid rgba(228, 159, 75, 0.2);">
+            <h4 style="color: var(--accent-orange); margin-bottom: 1rem;">🚀 Ready to Join SparkHub?</h4>
+            <p style="margin-bottom: 1rem;">Get on the waitlist for the revolutionary platform launching Q2 2025</p>
+            <button onclick="location.href='insights.html#sparkhub'" style="background: var(--accent-orange); color: white; padding: 10px 20px; border: none; border-radius: 20px; cursor: pointer;">
+              Join Waitlist
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2025 Harness the Spark. All Rights Reserved. | 
+        <a href="privacy.html" style="color: var(--accent-orange);">Privacy Policy</a> | 
+        <a href="terms.html" style="color: var(--accent-orange);">Terms of Service</a>
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      document.getElementById('contact-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Collect form data
+        const formData = new FormData(this);
+        const data = {};
+        for (let [key, value] of formData.entries()) {
+          data[key] = value;
+        }
+        
+        // For now, show success message
+        // In production, this would send to your backend/email service
+        alert('Message sent! I\'ll get back to you within 24 hours.');
+        
+        // Reset form
+        this.reset();
+        
+        // Optional: Redirect to thank you page
+        // window.location.href = 'thank-you.html';
+      });
+    </script>
+  </body>
+</html>

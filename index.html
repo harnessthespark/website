@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Harness the Spark - Turn Different Thinking Into Your Competitive Edge</title>
+    <link href="style.css" rel="stylesheet" />
+    <style>
+      /* Additional styles for new sections */
+      .audience-selector {
+        text-align: center;
+        padding: 40px 20px;
+        background: rgba(255, 255, 255, 0.02);
+        margin: 40px 0;
+        border-radius: 20px;
+      }
+      
+      .audience-question {
+        font-size: 2rem;
+        margin-bottom: 30px;
+        color: #fff;
+      }
+      
+      .audience-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+      
+      .audience-btn {
+        padding: 20px 40px;
+        font-size: 1.2rem;
+        border: 2px solid;
+        border-radius: 10px;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+      }
+      
+      .individual-btn {
+        border-color: #d71894;
+        color: #d71894;
+      }
+      
+      .individual-btn:hover {
+        background: #d71894;
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(215, 24, 148, 0.3);
+      }
+      
+      .company-btn {
+        border-color: #44ff88;
+        color: #44ff88;
+      }
+      
+      .company-btn:hover {
+        background: #44ff88;
+        color: #0a0a0a;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(68, 255, 136, 0.3);
+      }
+      
+      .truth-section {
+        padding: 60px 20px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      
+      .truth-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 40px;
+        margin-top: 40px;
+      }
+      
+      @media (max-width: 768px) {
+        .truth-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      
+      .truth-column h3 {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+        font-weight: 700;
+      }
+      
+      .broken-column h3 {
+        color: #ff4444;
+      }
+      
+      .building-column h3 {
+        color: #44ff88;
+      }
+      
+      .truth-item {
+        margin-bottom: 15px;
+        padding: 15px;
+        background: rgba(255, 255, 255, 0.03);
+        border-radius: 8px;
+        border-left: 3px solid;
+        transition: all 0.3s ease;
+      }
+      
+      .broken-item {
+        border-left-color: #ff4444;
+      }
+      
+      .broken-item:hover {
+        background: rgba(255, 68, 68, 0.05);
+        transform: translateX(5px);
+      }
+      
+      .building-item {
+        border-left-color: #44ff88;
+      }
+      
+      .building-item:hover {
+        background: rgba(68, 255, 136, 0.05);
+        transform: translateX(5px);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Canvas must be here -->
+    <canvas id="sparksCanvas"></canvas>
+    
+    <nav>
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="index.html" class="logo">
+            <img src="logo.png" alt="Harness the Spark" class="logo-icon">
+            <div class="logo-text">
+              <span class="text-main">Harness the Spark</span>
+            </div>
+          </a>
+          <div class="link-container">
+            <a href="intro.html">About</a>
+            <a href="contactus.html">Contact</a>
+            <a href="work.html">Solutions</a>
+            <a href="insights.html">News</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="hero-section">
+      <div class="container">
+        <h1>Different Thinking Isn't the Problem.<br>The System Is.</h1>
+        <h2><strong>Turn cognitive diversity into your competitive edge</strong></h2>
+        <h3><p>Revolutionary career strategies for different thinkers. Proven hiring solutions for forward-thinking companies.</p></h3>
+        <p class="cta-text">Ready to stop playing by rules that weren't written for you?</p>
+        <button id="notifyBtn" onclick="location.href='#choose-path'">Start Here</button>
+      </div>
+    </div>
+
+    <!-- Audience Selector -->
+    <div id="choose-path" class="container">
+      <div class="audience-selector">
+        <h2 class="audience-question">What brings you here?</h2>
+        <div class="audience-buttons">
+          <a href="work.html#individuals" class="audience-btn individual-btn">I'm tired of masking my brilliance</a>
+          <a href="work.html#companies" class="audience-btn company-btn">We can't find the talent we need</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- The Truth Section -->
+    <div class="truth-section">
+      <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 10px;">The Real Problem</h2>
+      <p style="text-align: center; color: #999; font-size: 1.2rem;">It's not you. It never was.</p>
+      
+      <div class="truth-grid">
+        <div class="truth-column broken-column">
+          <h3>What's Actually Broken:</h3>
+          
+          <div class="truth-item broken-item">
+            <strong>Job specs</strong> demanding impossible requirements
+          </div>
+          
+          <div class="truth-item broken-item">
+            <strong>"Culture fit"</strong> screening out innovation
+          </div>
+          
+          <div class="truth-item broken-item">
+            <strong>Interview processes</strong> rewarding performance over capability
+          </div>
+          
+          <div class="truth-item broken-item">
+            <strong>Workplaces</strong> built for one type of brain
+          </div>
+          
+          <div class="truth-item broken-item">
+            <strong>Recruitment</strong> that can't see past keywords
+          </div>
+          
+          <div class="truth-item broken-item">
+            <strong>The myth</strong> that different needs fixing
+          </div>
+        </div>
+        
+        <div class="truth-column building-column">
+          <h3>What We're Building:</h3>
+          
+          <div class="truth-item building-item">
+            <strong>Careers</strong> that work how YOUR brain works
+          </div>
+          
+          <div class="truth-item building-item">
+            <strong>Companies</strong> that profit from cognitive diversity
+          </div>
+          
+          <div class="truth-item building-item">
+            <strong>Success</strong> without suffocation
+          </div>
+          
+          <div class="truth-item building-item">
+            <strong>Hiring</strong> that recognises brilliance in any format
+          </div>
+          
+          <div class="truth-item building-item">
+            <strong>Workplaces</strong> where masking is obsolete
+          </div>
+          
+          <div class="truth-item building-item">
+            <strong>Revolution</strong> not accommodation
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="container" style="padding: 60px 20px;">
+      <div style="background: linear-gradient(135deg, rgba(215, 24, 148, 0.1), rgba(228, 159, 75, 0.1)); padding: 40px; border-radius: 20px; text-align: center; border: 2px solid var(--accent-orange);">
+        <h2 style="font-size: 2.5rem; margin-bottom: 20px; background: linear-gradient(135deg, #d71894, #e49f4b); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">Ready to Transform?</h2>
+        <p style="font-size: 1.3rem; color: #ccc; margin-bottom: 30px;">Whether you're building your career or building your team, we have the solution.</p>
+        <button onclick="location.href='work.html'" style="background: linear-gradient(135deg, #d71894, #e49f4b); color: white; padding: 15px 40px; border: none; border-radius: 30px; font-size: 1.2rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(215, 24, 148, 0.3);">See How We Can Help</button>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2025 Harness the Spark. All Rights Reserved. | 
+        <a href="privacy.html" style="color: var(--accent-orange);">Privacy Policy</a> | 
+        <a href="terms.html" style="color: var(--accent-orange);">Terms of Service</a> | 
+        <a href="book.html" style="color: var(--accent-orange);">Book Now</a>
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

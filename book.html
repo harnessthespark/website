@@ -1,0 +1,687 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Revolution - Harness the Spark</title>
+    <link href="style.css" rel="stylesheet" />
+    <style>
+      .page-header {
+        padding: 3rem 0;
+        text-align: center;
+      }
+      .page-header h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        margin-bottom: 1rem;
+      }
+      .content-section {
+        padding: 3rem 0;
+        min-height: auto;
+      }
+      .booking-selector {
+        text-align: center;
+        padding: 40px 20px;
+        background: rgba(255, 255, 255, 0.02);
+        margin: 40px 0;
+        border-radius: 20px;
+      }
+      .booking-question {
+        font-size: 2rem;
+        margin-bottom: 30px;
+        color: #fff;
+      }
+      .booking-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        flex-wrap: wrap;
+        margin-bottom: 3rem;
+      }
+      .booking-btn {
+        padding: 20px 40px;
+        font-size: 1.2rem;
+        border: 2px solid;
+        border-radius: 10px;
+        background: transparent;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        min-width: 280px;
+      }
+      .individual-btn {
+        border-color: #d71894;
+        color: #d71894;
+      }
+      .individual-btn:hover {
+        background: #d71894;
+        color: white;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(215, 24, 148, 0.3);
+      }
+      .company-btn {
+        border-color: #44ff88;
+        color: #44ff88;
+      }
+      .company-btn:hover {
+        background: #44ff88;
+        color: #0a0a0a;
+        transform: translateY(-3px);
+        box-shadow: 0 10px 30px rgba(68, 255, 136, 0.3);
+      }
+      .service-showcase {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 2rem;
+        margin: 3rem 0;
+      }
+      .service-preview {
+        background: rgba(30, 30, 30, 0.8);
+        padding: 2rem;
+        border-radius: 15px;
+        border: 1px solid rgba(228, 159, 75, 0.2);
+        transition: all 0.3s ease;
+      }
+      .service-preview:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 40px rgba(215, 24, 148, 0.2);
+      }
+      .service-preview h3 {
+        color: var(--accent-orange);
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+      }
+      .service-preview .price {
+        font-size: 1.8rem;
+        font-weight: bold;
+        color: var(--accent-pink);
+        margin: 1rem 0;
+      }
+      .service-preview ul {
+        list-style: none;
+        padding: 0;
+      }
+      .service-preview li {
+        padding: 0.5rem 0;
+        color: var(--text-dim);
+        position: relative;
+        padding-left: 1.5rem;
+      }
+      .service-preview li::before {
+        content: "✓";
+        position: absolute;
+        left: 0;
+        color: var(--accent-pink);
+      }
+      .typeform-container {
+        margin-top: 3rem;
+        min-height: 600px;
+        border-radius: 15px;
+        overflow: hidden;
+        display: none;
+      }
+      .typeform-container.active {
+        display: block;
+      }
+      .back-button {
+        background: rgba(255, 255, 255, 0.1);
+        color: var(--text-light);
+        padding: 10px 20px;
+        border: 1px solid rgba(228, 159, 75, 0.3);
+        border-radius: 20px;
+        cursor: pointer;
+        margin-bottom: 2rem;
+        transition: all 0.3s ease;
+      }
+      .back-button:hover {
+        background: rgba(228, 159, 75, 0.2);
+      }
+      .booking-intro {
+        text-align: center;
+        margin-bottom: 3rem;
+        max-width: 800px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .booking-intro h2 {
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        color: var(--accent-orange);
+      }
+      .booking-form {
+        background: rgba(30, 30, 30, 0.8);
+        padding: 2rem;
+        border-radius: 15px;
+        border: 1px solid rgba(228, 159, 75, 0.2);
+        margin-top: 2rem;
+      }
+      .booking-form .form-group {
+        margin-bottom: 1.5rem;
+      }
+      .booking-form label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--text-dim);
+        font-size: 0.95rem;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .booking-form input,
+      .booking-form textarea,
+      .booking-form select {
+        width: 100%;
+        padding: 1rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(228, 159, 75, 0.3);
+        border-radius: 5px;
+        color: var(--text-light);
+        font-family: inherit;
+        font-size: 1rem;
+      }
+      .booking-form textarea {
+        min-height: 120px;
+        resize: vertical;
+      }
+      .submit-btn {
+        background: linear-gradient(135deg, #d71894, #e49f4b);
+        color: white;
+        padding: 15px 30px;
+        border: none;
+        border-radius: 25px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        width: 100%;
+        margin-top: 1rem;
+      }
+      .submit-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 10px 30px rgba(215, 24, 148, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Canvas for animation -->
+    <canvas id="sparksCanvas"></canvas>
+    
+    <nav>
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="index.html" class="logo">
+            <img src="logo.png" alt="Harness the Spark" class="logo-icon">
+            <div class="logo-text">
+              <span class="text-main">Harness the Spark</span>
+            </div>
+          </a>
+          <div class="link-container">
+            <a href="intro.html">About</a>
+            <a href="contactus.html">Contact</a>
+            <a href="work.html">Solutions</a>
+            <a href="insights.html">News</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="page-header">
+      <div class="container">
+        <h1>Book Your Revolution</h1>
+        <p class="cta-text">Ready to transform? Choose your path below.</p>
+      </div>
+    </div>
+
+    <div class="content-section">
+      <div class="container">
+        
+        <!-- Booking Selector -->
+        <div id="booking-selector" class="booking-selector">
+          <div class="booking-intro">
+            <h2>Two Paths, One Revolution</h2>
+            <p style="font-size: 1.2rem; color: var(--text-dim); line-height: 1.6;">
+              Whether you're ready to stop masking your brilliance or transform how your company finds talent, 
+              I have the solution. Choose your path to get started.
+            </p>
+          </div>
+          
+          <h3 class="booking-question">I need help with...</h3>
+          <div class="booking-buttons">
+            <button class="booking-btn individual-btn" onclick="showIndividualServices()">
+              🔥 My Career<br>
+              <small style="font-size: 0.9rem; opacity: 0.8;">Individual coaching & strategy</small>
+            </button>
+            <button class="booking-btn company-btn" onclick="showCompanyServices()">
+              💼 My Business<br>
+              <small style="font-size: 0.9rem; opacity: 0.8;">Hiring & talent transformation</small>
+            </button>
+          </div>
+        </div>
+
+        <!-- Individual Services Preview -->
+        <div id="individual-services" class="typeform-container">
+          <button class="back-button" onclick="showSelector()">← Back to Options</button>
+          <h2 style="text-align: center; color: var(--accent-pink); margin-bottom: 2rem;">🔥 Individual Services</h2>
+          
+          <div class="service-showcase">
+            <div class="service-preview">
+              <h3>💡 Career Emergency</h3>
+              <div class="price">£110</div>
+              <p><strong>Get unstuck fast - 60-minute breakthrough session</strong></p>
+              <ul>
+                <li>CV emergency room</li>
+                <li>LinkedIn quick fixes</li>
+                <li>"Why am I getting rejected?" diagnosis</li>
+                <li>Action plan you can implement today</li>
+              </ul>
+            </div>
+
+            <div class="service-preview">
+              <h3>🚀 Career Ignition</h3>
+              <div class="price">£395</div>
+              <p><strong>Complete transformation for those done with masking</strong></p>
+              <ul>
+                <li>Total CV & LinkedIn overhaul</li>
+                <li>Interview prep that works for different minds</li>
+                <li>Salary negotiation (get paid what you're worth)</li>
+                <li>30 days of support</li>
+              </ul>
+            </div>
+
+            <div class="service-preview">
+              <h3>⚡ Executive Different</h3>
+              <div class="price">£1,997</div>
+              <p><strong>For senior professionals ready to stop dimming their light</strong></p>
+              <ul>
+                <li>Position yourself as the visionary you are</li>
+                <li>Board-level communication without losing authenticity</li>
+                <li>Navigate politics while staying true</li>
+                <li>90-day transformation programme</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Individual Booking Form -->
+          <div class="booking-form">
+            <h3 style="text-align: center; margin-bottom: 2rem; color: var(--accent-pink);">Book Your Individual Service</h3>
+            <form id="individual-booking-form">
+              <div class="form-group">
+                <label for="ind-name">Your Name</label>
+                <input type="text" id="ind-name" name="name" required placeholder="The real you, not the masked version">
+              </div>
+              
+              <div class="form-group">
+                <label for="ind-email">Email Address</label>
+                <input type="email" id="ind-email" name="email" required placeholder="your@email.com">
+              </div>
+              
+              <div class="form-group">
+                <label for="ind-phone">Phone Number</label>
+                <input type="tel" id="ind-phone" name="phone" placeholder="For booking confirmations">
+              </div>
+              
+              <div class="form-group">
+                <label for="ind-service">Choose Your Service</label>
+                <select id="ind-service" name="service" required onchange="updateIndividualPrice()">
+                  <option value="">Select your transformation...</option>
+                  <option value="career-emergency-110">💡 Career Emergency - £110</option>
+                  <option value="career-ignition">🚀 Career Ignition - £395</option>
+                  <option value="executive-different">⚡ Executive Different - £1,997</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="ind-urgency">When do you need this?</label>
+                <select id="ind-urgency" name="urgency" required>
+                  <option value="">Be honest...</option>
+                  <option value="asap">ASAP - I'm done with the status quo</option>
+                  <option value="this-week">This week</option>
+                  <option value="next-week">Next week</option>
+                  <option value="next-month">Within the next month</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="ind-challenge">What's Your Revolution?</label>
+                <textarea id="ind-challenge" name="challenge" required placeholder="What would change if you never had to mask again? What's your vision for success?"></textarea>
+              </div>
+              
+              <div class="form-group">
+                <label for="ind-experience">Previous Coaching Experience?</label>
+                <select id="ind-experience" name="experience">
+                  <option value="">Optional...</option>
+                  <option value="first-time">First time seeking professional help</option>
+                  <option value="some">Some previous coaching/therapy</option>
+                  <option value="experienced">Experienced with professional development</option>
+                </select>
+              </div>
+              
+              <div id="price-display" style="background: rgba(215, 24, 148, 0.1); padding: 1.5rem; border-radius: 10px; margin: 2rem 0; text-align: center; display: none;">
+                <h4 style="color: var(--accent-pink); margin-bottom: 0.5rem;">Total Investment</h4>
+                <div id="price-amount" style="font-size: 2rem; font-weight: bold; color: var(--accent-orange);"></div>
+                <p style="color: var(--text-dim); margin-top: 0.5rem;">Payment required to confirm booking</p>
+              </div>
+              
+              <button type="submit" class="submit-btn">Book & Pay Now</button>
+              
+              <p style="text-align: center; font-size: 0.9rem; color: var(--text-dim); margin-top: 1rem;">
+                You'll be redirected to secure payment, then receive booking confirmation within 24 hours.
+              </p>
+            </form>
+          </div>
+        </div>
+
+        <!-- Company Services Preview -->
+        <div id="company-services" class="typeform-container">
+          <button class="back-button" onclick="showSelector()">← Back to Options</button>
+          <h2 style="text-align: center; color: var(--accent-orange); margin-bottom: 2rem;">💼 Business Services</h2>
+          
+          <div class="service-showcase">
+            <div class="service-preview">
+              <h3>🔍 Recruitment Reality Check</h3>
+              <div class="price">£295</div>
+              <p><strong>Find out why that role's been empty for 6 months</strong></p>
+              <ul>
+                <li>Diagnose your broken hiring process</li>
+                <li>Job spec audit (stop asking for unicorns)</li>
+                <li>Salary benchmarking</li>
+                <li>Actionable fixes you can implement today</li>
+              </ul>
+            </div>
+
+            <div class="service-preview">
+              <h3>🚀 Hiring Transformation</h3>
+              <div class="price">£997</div>
+              <p><strong>Stop bleeding money on recruitment fees</strong></p>
+              <ul>
+                <li>Half-day intensive to fix everything</li>
+                <li>Build a hiring process that actually works</li>
+                <li>Interview training for your team</li>
+                <li>30-day support to embed changes</li>
+              </ul>
+            </div>
+
+            <div class="service-preview">
+              <h3>🎯 Cognitive Diversity Audit</h3>
+              <div class="price">From £2,997</div>
+              <p><strong>Unlock the innovation you're missing</strong></p>
+              <ul>
+                <li>Full workplace assessment</li>
+                <li>Identify barriers to different thinking</li>
+                <li>Build genuinely inclusive processes</li>
+                <li>Measurable ROI within 90 days</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Business Booking Form -->
+          <div class="booking-form">
+            <h3 style="text-align: center; margin-bottom: 2rem; color: var(--accent-orange);">Book Your Business Service</h3>
+            <form id="business-booking-form">
+              <div class="form-group">
+                <label for="biz-company">Company Name</label>
+                <input type="text" id="biz-company" name="company" required placeholder="Your company name">
+              </div>
+              
+              <div class="form-group">
+                <label for="biz-name">Your Name</label>
+                <input type="text" id="biz-name" name="name" required placeholder="Decision maker name">
+              </div>
+              
+              <div class="form-group">
+                <label for="biz-email">Business Email</label>
+                <input type="email" id="biz-email" name="email" required placeholder="your@company.com">
+              </div>
+              
+              <div class="form-group">
+                <label for="biz-phone">Phone Number</label>
+                <input type="tel" id="biz-phone" name="phone" required placeholder="For booking confirmations">
+              </div>
+              
+              <div class="form-group">
+                <label for="biz-service">Choose Your Service</label>
+                <select id="biz-service" name="service" required onchange="updateBusinessPrice()">
+                  <option value="">Select your transformation...</option>
+                  <option value="recruitment-reality">🔍 Recruitment Reality Check - £295</option>
+                  <option value="hiring-transformation">🚀 Hiring Transformation - £997</option>
+                  <option value="diversity-audit">🎯 Cognitive Diversity Audit - From £2,997</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="biz-size">Company Size</label>
+                <select id="biz-size" name="company-size" required>
+                  <option value="">Select size...</option>
+                  <option value="startup">Startup (1-10 employees)</option>
+                  <option value="small">Small business (11-50 employees)</option>
+                  <option value="medium">Medium business (51-200 employees)</option>
+                  <option value="large">Large business (200+ employees)</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="biz-urgency">When do you need this?</label>
+                <select id="biz-urgency" name="urgency" required>
+                  <option value="">Be honest...</option>
+                  <option value="asap">ASAP - we're losing money daily</option>
+                  <option value="this-month">Within this month</option>
+                  <option value="next-quarter">Next quarter</option>
+                  <option value="planning">Planning for future</option>
+                </select>
+              </div>
+              
+              <div class="form-group">
+                <label for="biz-challenge">What's Your Biggest Hiring Challenge?</label>
+                <textarea id="biz-challenge" name="challenge" required placeholder="What would transforming your hiring process mean for your business? What opportunities are you missing?"></textarea>
+              </div>
+              
+              <div class="form-group">
+                <label for="biz-budget">Investment Readiness</label>
+                <select id="biz-budget" name="budget" required>
+                  <option value="">Be realistic...</option>
+                  <option value="approved">Budget approved, ready to proceed</option>
+                  <option value="needs-approval">Needs budget approval but committed</option>
+                  <option value="exploring">Exploring options and ROI</option>
+                </select>
+              </div>
+              
+              <div id="business-price-display" style="background: rgba(68, 255, 136, 0.1); padding: 1.5rem; border-radius: 10px; margin: 2rem 0; text-align: center; display: none;">
+                <h4 style="color: var(--accent-orange); margin-bottom: 0.5rem;">Investment</h4>
+                <div id="business-price-amount" style="font-size: 2rem; font-weight: bold; color: var(--accent-orange);"></div>
+                <p style="color: var(--text-dim); margin-top: 0.5rem;">50% deposit required, balance on completion</p>
+              </div>
+              
+              <button type="submit" class="submit-btn">Book & Pay Deposit</button>
+              
+              <p style="text-align: center; font-size: 0.9rem; color: var(--text-dim); margin-top: 1rem;">
+                You'll pay a 50% deposit now, with the balance due before service delivery.
+              </p>
+            </form>
+          </div>
+        </div>
+
+        <!-- Call to Action for Unsure -->
+        <div style="text-align: center; margin-top: 4rem; padding: 2rem; background: linear-gradient(135deg, rgba(215, 24, 148, 0.1), rgba(228, 159, 75, 0.1)); border-radius: 15px;">
+          <h3 style="color: var(--accent-orange); margin-bottom: 1rem;">Not Sure Which Path?</h3>
+          <p style="margin-bottom: 2rem; font-size: 1.1rem;">
+            No problem! Let's have a quick chat to figure out the best approach for your situation.
+          </p>
+          <button onclick="location.href='contactus.html'" style="background: linear-gradient(135deg, #d71894, #e49f4b); color: white; padding: 15px 30px; border: none; border-radius: 25px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+            Start with a Conversation
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2025 Harness the Spark. All Rights Reserved. | 
+        <a href="privacy.html" style="color: var(--accent-orange);">Privacy Policy</a> | 
+        <a href="terms.html" style="color: var(--accent-orange);">Terms of Service</a>
+      </p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+      function showIndividualServices() {
+        document.getElementById('booking-selector').style.display = 'none';
+        document.getElementById('individual-services').classList.add('active');
+        document.getElementById('company-services').classList.remove('active');
+      }
+
+      function showCompanyServices() {
+        document.getElementById('booking-selector').style.display = 'none';
+        document.getElementById('company-services').classList.add('active');
+        document.getElementById('individual-services').classList.remove('active');
+      }
+
+      function showSelector() {
+        document.getElementById('booking-selector').style.display = 'block';
+        document.getElementById('individual-services').classList.remove('active');
+        document.getElementById('company-services').classList.remove('active');
+      }
+
+      function updateIndividualPrice() {
+        const service = document.getElementById('ind-service').value;
+        const priceDisplay = document.getElementById('price-display');
+        const priceAmount = document.getElementById('price-amount');
+        
+        const prices = {
+          'career-emergency-110': '£110',
+          'career-emergency-99': '£99',
+          'career-ignition': '£395',
+          'executive-different': '£1,997'
+        };
+        
+        if (service && prices[service]) {
+          priceAmount.textContent = prices[service];
+          priceDisplay.style.display = 'block';
+        } else {
+          priceDisplay.style.display = 'none';
+        }
+      }
+
+      function updateBusinessPrice() {
+        const service = document.getElementById('biz-service').value;
+        const priceDisplay = document.getElementById('business-price-display');
+        const priceAmount = document.getElementById('business-price-amount');
+        
+        const prices = {
+          'recruitment-reality': '£295 (£147.50 deposit)',
+          'hiring-transformation': '£997 (£498.50 deposit)',
+          'diversity-audit': 'From £2,997 (£1,498.50 deposit)'
+        };
+        
+        if (service && prices[service]) {
+          priceAmount.textContent = prices[service];
+          priceDisplay.style.display = 'block';
+        } else {
+          priceDisplay.style.display = 'none';
+        }
+      }
+
+      // Handle form submissions
+      document.getElementById('individual-booking-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        handleIndividualBooking();
+      });
+
+      document.getElementById('business-booking-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        handleBusinessBooking();
+      });
+
+      function handleIndividualBooking() {
+        const formData = new FormData(document.getElementById('individual-booking-form'));
+        const service = formData.get('service');
+        
+        // Price mapping for Stripe
+        const stripePrices = {
+          'career-emergency-110': 11000, // £110 in pence
+          'career-emergency-99': 9900,   // £99 in pence
+          'career-ignition': 39500,    // £395 in pence
+          'executive-different': 199700  // £1,997 in pence
+        };
+        
+        if (stripePrices[service]) {
+          // Create Stripe checkout session
+          createStripeSession({
+            amount: stripePrices[service],
+            service: service,
+            customer_data: {
+              name: formData.get('name'),
+              email: formData.get('email'),
+              phone: formData.get('phone'),
+              urgency: formData.get('urgency'),
+              challenge: formData.get('challenge'),
+              experience: formData.get('experience')
+            },
+            type: 'individual'
+          });
+        }
+      }
+
+      function handleBusinessBooking() {
+        const formData = new FormData(document.getElementById('business-booking-form'));
+        const service = formData.get('service');
+        
+        // Deposit amounts for business services (50%)
+        const depositPrices = {
+          'recruitment-reality': 14750,  // £147.50 deposit
+          'hiring-transformation': 49850, // £498.50 deposit
+          'diversity-audit': 149850      // £1,498.50 deposit (minimum)
+        };
+        
+        if (depositPrices[service]) {
+          // Create Stripe checkout session for deposit
+          createStripeSession({
+            amount: depositPrices[service],
+            service: service,
+            customer_data: {
+              company: formData.get('company'),
+              name: formData.get('name'),
+              email: formData.get('email'),
+              phone: formData.get('phone'),
+              company_size: formData.get('company-size'),
+              urgency: formData.get('urgency'),
+              challenge: formData.get('challenge'),
+              budget: formData.get('budget')
+            },
+            type: 'business'
+          });
+        }
+      }
+
+      function createStripeSession(data) {
+        // This function will integrate with your Stripe backend
+        // For now, redirect to a payment page with the data
+        
+        // Encode the data to pass to payment page
+        const params = new URLSearchParams(data.customer_data);
+        params.append('service', data.service);
+        params.append('amount', data.amount);
+        params.append('type', data.type);
+        
+        // Redirect to payment processing page (you'll create this)
+        window.location.href = `payment.html?${params.toString()}`;
+        
+        // Alternative: Direct Stripe integration (once you have your keys)
+        /*
+        fetch('/create-checkout-session', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data)
+        })
+        .then(response => response.json())
+        .then(session => {
+          // Redirect to Stripe Checkout
+          window.location.href = session.url;
+        })
+        .catch(error => {
+          console.error('Error:', error);
+          alert('Payment processing error. Please try again or contact us directly.');
+        });
+        */
+      }
+    </script>
+  </body>
+</html>

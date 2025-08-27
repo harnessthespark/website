@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Harness the Spark</title>
+    <link href="style.css" rel="stylesheet" />
+    <style>
+      .page-header {
+        padding: 3rem 0;
+        text-align: center;
+      }
+      .page-header h1 {
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        margin-bottom: 1rem;
+      }
+      .content-section {
+        padding: 4rem 0;
+        min-height: auto;
+      }
+      .content-section h2 {
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        margin-bottom: 2rem;
+        text-align: left;
+      }
+      .content-section p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        color: var(--text-light);
+      }
+      .section-light {
+        background: rgba(255, 255, 255, 0.02);
+        border-top: 1px solid rgba(228, 159, 75, 0.1);
+        border-bottom: 1px solid rgba(228, 159, 75, 0.1);
+      }
+      .section-gradient {
+        background: linear-gradient(135deg, rgba(215, 24, 148, 0.05), rgba(228, 159, 75, 0.05));
+      }
+      .impact-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+      .impact-card {
+        background: rgba(30, 30, 30, 0.8);
+        padding: 1.5rem;
+        border-radius: 10px;
+        border: 1px solid rgba(228, 159, 75, 0.2);
+        text-align: center;
+      }
+      .impact-number {
+        font-size: 2.5rem;
+        font-weight: bold;
+        background: linear-gradient(135deg, var(--accent-pink), var(--accent-orange));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.5rem;
+      }
+      .impact-label {
+        font-size: 0.9rem;
+        color: var(--text-dim);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+      .values-list {
+        list-style: none;
+        padding: 0;
+      }
+      .values-list li {
+        padding: 1.5rem 0;
+        border-bottom: 1px solid rgba(228, 159, 75, 0.1);
+        font-size: 1.1rem;
+      }
+      .values-list li strong {
+        display: block;
+        font-size: 1.3rem;
+        color: var(--accent-orange);
+        margin-bottom: 0.5rem;
+      }
+      .story-grid {
+        display: grid;
+        grid-template-columns: 280px 1fr;
+        gap: 2.5rem;
+        align-items: start;
+        margin: 2rem 0;
+      }
+      .profile-image {
+        width: 100%;
+        border-radius: 15px;
+        border: 1px solid rgba(228, 159, 75, 0.2);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+        background: linear-gradient(135deg, rgba(215, 24, 148, 0.1), rgba(228, 159, 75, 0.1));
+        padding: 5px;
+        filter: contrast(1.05) brightness(0.95) saturate(1.1) blur(0.3px);
+        transition: all 0.3s ease;
+      }
+      .profile-image:hover {
+        filter: contrast(1.1) brightness(1.0) saturate(1.0) blur(0px);
+        transform: translateY(-2px);
+        box-shadow: 0 25px 50px rgba(215, 24, 148, 0.2);
+      }
+      @media (max-width: 768px) {
+        .story-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+          text-align: center;
+        }
+        .profile-image {
+          max-width: 280px;
+          margin: 0 auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Canvas for animation -->
+    <canvas id="sparksCanvas"></canvas>
+    
+    <nav>
+      <div class="container">
+        <div class="nav-wrapper">
+          <a href="index.html" class="logo">
+            <img src="logo.png" alt="Harness the Spark" class="logo-icon">
+            <div class="logo-text">
+              <span class="text-main">Harness the Spark</span>
+            </div>
+          </a>
+          <div class="link-container">
+            <a href="intro.html">About</a>
+            <a href="contactus.html">Contact</a>
+            <a href="work.html">Solutions</a>
+            <a href="insights.html">News</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <div class="page-header">
+      <div class="container">
+        <h1>Different Isn't Defective.<br>Conformity Is.</h1>
+        <p class="cta-text">Turning different thinking into competitive advantage</p>
+      </div>
+    </div>
+
+    <!-- Mission Section -->
+    <div class="content-section">
+      <div class="container">
+        <h2>Our Mission</h2>
+        <p>We're rewriting the rules for how different minds succeed in work and life. This isn't about "fixing" or "accommodating" cognitive differences—it's about recognising them as the competitive advantages they've always been.</p>
+        <p>We believe that when workplaces and careers are designed to harness cognitive diversity (not suppress it), extraordinary things happen. Companies get innovation. Individuals get careers that actually fit. And the world gets solutions it didn't even know were possible.</p>
+      </div>
+    </div>
+
+    <!-- Story Section with Light Background -->
+    <div class="content-section section-light">
+      <div class="container">
+        <h2>Our Story</h2>
+        <div class="story-grid">
+          <img src="headshot1.jpg" alt="Lisa - Founder of Harness the Spark" class="profile-image">
+          <div>
+            <p>After 13 years in recruitment, I watched brilliant minds get overlooked because they didn't fit the mould. I saw companies crying "talent shortage" whilst demanding impossible requirements—like 6 years experience in 2-year-old technology. As someone who's AuDHD, I knew the problem wasn't the talent. It was the system.</p>
+            <p>So I'm changing it. As someone who's AuDHD with 13 years inside the recruitment machine, I know exactly where the system fails different thinkers—and how to fix it. Through strategic consulting, coaching, workplace audits, and training, I help organisations and individuals recognise cognitive diversity as their competitive edge. Because different thinking isn't a barrier to success—it's the key to it.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Who We Serve -->
+    <div class="content-section">
+      <div class="container">
+        <h2>Who We Serve</h2>
+        <p>I work with forward-thinking companies ready to unlock innovation through cognitive diversity, and ambitious neurodivergent professionals ready to stop dimming their light. Whether you're an organisation struggling to attract "the right talent" (hint: you're looking for the wrong thing) or an individual tired of masking your brilliance to fit in, I'll help you turn different thinking into your greatest asset.</p>
+      </div>
+    </div>
+
+    <!-- The Real Impact with Gradient -->
+    <div class="content-section section-gradient">
+      <div class="container">
+        <h2 style="text-align: center;">The Real Impact</h2>
+        <div class="impact-grid">
+          <div class="impact-card">
+            <div class="impact-number">£8-14k</div>
+            <div class="impact-label">Saved per role</div>
+          </div>
+          <div class="impact-card">
+            <div class="impact-number">13 Years</div>
+            <div class="impact-label">Inside Recruitment</div>
+          </div>
+          <div class="impact-card">
+            <div class="impact-number">100%</div>
+            <div class="impact-label">Lived Experience</div>
+          </div>
+        </div>
+        <p style="margin-top: 2rem;">Companies embracing cognitive diversity see real results: increased innovation, better problem-solving, and access to untapped talent pools. My clients save £8-14k per role by fixing their broken hiring processes instead of paying 15-25% recruitment fees on positions that stay empty for months. One workplace audit can transform your talent pipeline, reduce turnover, and create teams that actually deliver breakthrough thinking—not just more of the same.</p>
+      </div>
+    </div>
+
+    <!-- Values Section -->
+    <div class="content-section">
+      <div class="container">
+        <h2>Our Values</h2>
+        <ul class="values-list">
+          <li><strong>Celebration, Not Accommodation:</strong> We don't "accommodate" different thinking—we recognise it as the competitive advantage it's always been.</li>
+          <li><strong>Authenticity Over Masking:</strong> Success shouldn't require hiding who you are. We help you thrive as your authentic self.</li>
+          <li><strong>Evidence Over Assumptions:</strong> We use real cognitive science and lived experience, not outdated stereotypes about how minds "should" work.</li>
+          <li><strong>Revolution Through Empowerment:</strong> We're not just offering services—we're changing how the world sees and values cognitive diversity.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="content-section">
+      <div class="container">
+        <div style="background: linear-gradient(135deg, rgba(215, 24, 148, 0.1), rgba(228, 159, 75, 0.1)); padding: 2.5rem; border-radius: 15px; text-align: center; border: 2px solid var(--accent-orange);">
+          <h2 style="font-size: 2rem; background: linear-gradient(135deg, var(--accent-pink), var(--accent-orange)); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 1.5rem;">Ready to turn different thinking into your competitive edge?</h2>
+          <button onclick="window.location.href='contactus.html'" style="background: linear-gradient(135deg, var(--accent-pink), var(--accent-orange)); color: white; padding: 1rem 2.5rem; border: none; border-radius: 25px; font-size: 1.1rem; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 10px 30px rgba(215, 24, 148, 0.3);">Let's Get Started</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2025 Harness the Spark. All Rights Reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

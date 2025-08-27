@@ -1,0 +1,399 @@
+/* CSS Variables go at the top */
+:root {
+  --bg-dark: #0a0a0a;
+  --bg-gradient: linear-gradient(135deg, #0a0a0a 0%, #1a0813 50%, #0a0a0a 100%);
+  --text-light: rgba(228, 228, 228, 0.93);
+  --text-dim: #edc02d;
+  --accent-pink: #d71894;
+  --accent-pink-glow: #ff20b0;
+  --accent-orange: #e49f4b;
+  --accent-orange-dark: #f36808;
+  
+  /* Consistent spacing variables */
+  --spacing-xs: 0.5rem;
+  --spacing-sm: 1rem;
+  --spacing-md: 1.5rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 3rem;
+  --spacing-2xl: 4rem;
+  --spacing-3xl: 6rem;
+  
+  /* Consistent border radius */
+  --radius-sm: 5px;
+  --radius-md: 10px;
+  --radius-lg: 15px;
+  --radius-full: 50px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: var(--text-light);
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);  
+  width: 100%;
+}
+
+/* Navigation with Logo */
+nav {
+  padding: var(--spacing-lg) 0;
+  position: relative;
+  z-index: 100;
+}
+
+.nav-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+/* Logo Styles */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.logo-icon {
+  height: 50px;
+  width: auto;
+  filter: drop-shadow(0 0 15px rgba(231, 159, 75, 0.3));
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.logo-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.text-main {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, var(--accent-pink), var(--accent-orange), var(--accent-pink));
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease infinite;
+}
+
+/* Logo Hover Effects */
+.logo:hover {
+  transform: translateY(-2px);
+}
+
+.logo:hover .logo-icon {
+  transform: rotate(15deg) scale(1.05);
+  filter: drop-shadow(0 0 25px rgba(215, 24, 148, 0.5))
+          drop-shadow(0 0 35px rgba(228, 159, 75, 0.3));
+}
+
+/* Navigation Links */
+.link-container {
+  display: flex;
+  gap: var(--spacing-lg);
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.link-container a {
+  text-decoration: none;
+  color: var(--text-dim);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  padding: var(--spacing-xs) 0;
+}
+
+.link-container a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-pink), var(--accent-orange));
+  transition: width 0.3s ease;
+}
+
+.link-container a:hover {
+  color: var(--text-light);
+}
+
+.link-container a:hover::after {
+  width: 100%;
+}
+
+/* Hero Section */
+.hero-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-2xl) 0; 
+  min-height: 70vh;
+}
+
+.hero-section .container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-lg);
+}
+
+h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  text-align: center;
+  background: linear-gradient(
+    135deg,
+    var(--accent-pink),
+    var(--accent-orange),
+    var(--accent-pink)
+  );
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradientShift 4s ease infinite,
+    glow 2s ease-in-out infinite alternate;
+  letter-spacing: -1px;
+  margin-bottom: var(--spacing-md);
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 300;
+  color: var(--text-dim);
+  text-align: center;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  animation: fadeInUp 1s ease-out 0.3s both;
+  margin-bottom: var(--spacing-xl);
+}
+h3 {
+  font-size: clamp(1.0rem, 2vw, 1.5rem);
+  font-weight: 200;
+  color: var(--text-dim);
+  text-align: center;
+  letter-spacing: 3px;
+  text-transform: lowercase;
+  animation: fadeInUp 1s ease-out 0.3s both;
+  margin-bottom: var(--spacing-xl);
+}
+
+.cta-text {
+  font-size: clamp(1.1rem, 2.2vw, 1.3rem);
+  font-weight: 400;
+  color: var(--text-light);
+  text-align: center;
+  letter-spacing: 1px;
+  margin-bottom: var(--spacing-md);
+  animation: fadeInUp 1s ease-out 0.5s both;
+  background: linear-gradient(135deg, var(--accent-pink-glow), var(--accent-orange));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 8px rgba(215, 24, 148, 0.3));
+}
+button {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: var(--spacing-sm) calc(var(--spacing-lg) + var(--spacing-xs));
+  border: none;
+  border-radius: var(--radius-full);
+  background: linear-gradient(
+    135deg,
+    var(--accent-orange-dark),
+    var(--accent-orange)
+  );
+  color: white;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  animation: fadeInUp 1s ease-out 0.6s both;
+  box-shadow: 0 4px 15px rgba(228, 159, 75, 0.3);
+  margin-top: var(--spacing-sm);
+}
+
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s ease;
+}
+.btn-loading {
+  color: transparent;
+  position: relative;
+  pointer-events: none;
+}
+
+.btn-loading::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 50%;
+  left: 50%;
+  margin: -10px 0 0 -10px;
+  border: 2px solid white;
+  border-radius: 50%;
+  border-top-color: transparent;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px rgba(228, 159, 75, 0.4);
+}
+
+button:hover::before {
+  left: 100%;
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 10px rgba(228, 159, 75, 0.3);
+}
+button:focus{
+  outline: 2.5px solid #05438f;
+  outline-offset: 2.5px;
+}
+
+footer {
+  width: 100%;
+  text-align: center;
+  padding: var(--spacing-xl) var(--spacing-lg) var(--spacing-lg) var(--spacing-lg);
+  margin-top: auto;
+  background: linear-gradient(to top, var(--bg-dark), transparent);
+}
+
+footer p {
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Animations */
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 20px rgba(215, 24, 148, 0.5));
+  }
+  to {
+    filter: drop-shadow(0 0 30px rgba(228, 159, 75, 0.7))
+      drop-shadow(0 0 40px rgba(215, 24, 148, 0.4));
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .nav-wrapper {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .logo {
+    margin-bottom: 0.5rem;
+  }
+  
+  .logo-icon {
+    height: 40px;
+  }
+  
+  .text-main {
+    font-size: 1.1rem;
+  }
+  
+  .link-container {
+    width: 100%;
+    justify-content: center;
+  }
+}
+#sparksCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    opacity: 0.6;  /* Reduce opacity so it doesn't overpower content */
+    mix-blend-mode: screen;  /* This makes the sparks blend better */
+}
+
+/* Ensure your content has higher z-index and stays visible */
+nav, .hero-section, footer {
+    position: relative;
+    z-index: 10;  /* Increased from 2 to 10 */
+}
+
+/* Optional: Add a subtle dark overlay behind text for better readability */
+h1, h2, button {
+    position: relative;
+}
+
+h1::before, h2::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: -40px;
+    right: -40px;
+    bottom: -20px;
+    background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0.17) 0%, transparent 70%);
+    z-index: -1;
+}
