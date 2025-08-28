@@ -33,6 +33,7 @@ class HarnessTheSparkApp {
         this.setupHeaderScrollEffect();
         this.setupAnimations();
         this.setupFormValidation();
+        this.setupContactForm();
         this.setupLazyLoading();
         this.setupServiceWorker();
         
@@ -285,6 +286,14 @@ class HarnessTheSparkApp {
      */
     handleFormSubmission(e) {
         const form = e.target;
+        
+        // Handle contact form specifically
+        if (form.id === 'contact-form') {
+            e.preventDefault();
+            this.handleContactFormSubmission(form);
+            return;
+        }
+
         const fields = form.querySelectorAll('input, textarea, select');
         let isFormValid = true;
 
@@ -313,6 +322,165 @@ class HarnessTheSparkApp {
         // Handle successful submission
         this.trackFormSubmission(form);
         this.showNotification('Thank you! Your message has been sent.', 'success');
+    }
+
+    /**
+     * Setup contact form functionality
+     */
+    setupContactForm() {
+        const contactForm = document.getElementById('contact-form');
+        if (!contactForm) return;
+
+        // Add real-time validation
+        const fields = contactForm.querySelectorAll('input, select, textarea');
+        fields.forEach(field => {
+            field.addEventListener('blur', () => {
+                this.validateContactField(field);
+            });
+
+            field.addEventListener('input', () => {
+                // Clear error state on input
+                const formGroup = field.closest('.form-group');
+                formGroup.classList.remove('field-error');
+                formGroup.querySelector('.field-error-message').textContent = '';
+            });
+        });
+    }
+
+    /**
+     * Handle contact form submission
+     */
+    async handleContactFormSubmission(form) {
+        const submitBtn = form.querySelector('.btn-submit');
+        const originalText = submitBtn.innerHTML;
+        
+        // Validate form
+        const isValid = this.validateContactForm(form);
+        if (!isValid) return;
+
+        // Show loading state
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+        submitBtn.disabled = true;
+
+        try {
+            // Collect form data
+            const formData = new FormData(form);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                service: formData.get('service'),
+                message: formData.get('message'),
+                timestamp: new Date().toISOString(),
+                source: 'website_contact_form'
+            };
+
+            // Track form submission
+            this.trackEvent('form', 'submit', 'contact_form', data.service);
+
+            // For now, simulate sending (replace with actual form handler)
+            await this.simulateFormSubmission(data);
+
+            // Show success message
+            this.showNotification('Thank you! I\'ll be in touch within 24 hours.', 'success');
+            
+            // Reset form
+            form.reset();
+            
+            // Track conversion
+            this.trackConversion('contact_form_submit', data.service);
+
+        } catch (error) {
+            console.error('Form submission error:', error);
+            this.showNotification('Sorry, there was an error sending your message. Please try email instead.', 'error');
+        } finally {
+            // Reset button
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+        }
+    }
+
+    /**
+     * Validate contact form
+     */
+    validateContactForm(form) {
+        const fields = form.querySelectorAll('input[required], select[required], textarea[required]');
+        let isValid = true;
+
+        fields.forEach(field => {
+            if (!this.validateContactField(field)) {
+                isValid = false;
+            }
+        });
+
+        return isValid;
+    }
+
+    /**
+     * Validate individual contact form field
+     */
+    validateContactField(field) {
+        const formGroup = field.closest('.form-group');
+        const errorMessage = formGroup.querySelector('.field-error-message');
+        const value = field.value.trim();
+        const isRequired = field.hasAttribute('required');
+        
+        let error = '';
+
+        // Required validation
+        if (isRequired && !value) {
+            error = 'This field is required';
+        }
+        
+        // Email validation
+        else if (field.type === 'email' && value) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(value)) {
+                error = 'Please enter a valid email address';
+            }
+        }
+        
+        // Phone validation (UK format)
+        else if (field.type === 'tel' && value) {
+            const phoneRegex = /^(\+44|0)[0-9\s\-]{9,}$/;
+            if (!phoneRegex.test(value.replace(/\s/g, ''))) {
+                error = 'Please enter a valid UK phone number';
+            }
+        }
+
+        // Update UI
+        if (error) {
+            formGroup.classList.add('field-error');
+            formGroup.classList.remove('field-valid');
+            errorMessage.textContent = error;
+            return false;
+        } else {
+            formGroup.classList.remove('field-error');
+            if (value) {
+                formGroup.classList.add('field-valid');
+            }
+            errorMessage.textContent = '';
+            return true;
+        }
+    }
+
+    /**
+     * Simulate form submission (replace with actual backend)
+     */
+    async simulateFormSubmission(data) {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                // Log to console for now (replace with actual API call)
+                console.log('Contact form submission:', data);
+                
+                // Simulate success/failure
+                if (Math.random() > 0.1) { // 90% success rate
+                    resolve(data);
+                } else {
+                    reject(new Error('Network error'));
+                }
+            }, 1000);
+        });
     }
 
     /**
@@ -629,6 +797,21 @@ class HarnessTheSparkApp {
                 non_interaction: true
             });
         }
+    }
+
+    /**
+     * Track conversion goals
+     */
+    trackConversion(goal, value = null) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'conversion', {
+                event_category: 'Conversion',
+                event_label: goal,
+                value: value
+            });
+        }
+
+        console.log('Conversion tracked:', goal, value);
     }
 }
 
