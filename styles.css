@@ -514,6 +514,32 @@ nav {
     z-index: 1;
 }
 
+/* Features Grid */
+.features-grid {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-2xl);
+    padding: var(--space-lg);
+    margin-bottom: var(--space-lg);
+}
+
+.features-grid h3 {
+    color: var(--white);
+    margin-bottom: var(--space-sm);
+    font-size: var(--font-size-xl);
+}
+
+.features-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-sm);
+    text-align: left;
+}
+
+.features-list div {
+    padding: var(--space-xs);
+    color: var(--white);
+}
+
 .pricing-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -526,6 +552,26 @@ nav {
     border-radius: var(--radius-lg);
     padding: var(--space-md);
     transition: transform var(--transition-normal), background-color var(--transition-normal);
+    text-align: center;
+}
+
+.pricing-card h4 {
+    color: var(--white);
+    margin-bottom: var(--space-xs);
+    font-size: var(--font-size-lg);
+}
+
+.pricing-card .price {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--accent-gold);
+    margin-bottom: var(--space-xs);
+}
+
+.pricing-card p {
+    font-size: 0.9rem;
+    margin-top: var(--space-xs);
+    opacity: 0.9;
 }
 
 .pricing-card:hover {
@@ -536,6 +582,7 @@ nav {
 .pricing-card.featured {
     background: rgba(255, 255, 255, 0.2);
     border: 2px solid var(--accent-gold);
+    transform: scale(1.05);
 }
 
 .pricing-badge {
@@ -547,6 +594,68 @@ nav {
     margin-top: var(--space-xs);
     display: inline-block;
     font-weight: 600;
+}
+
+/* Consultation Section */
+.consultation-section {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    padding: var(--space-md);
+    margin-top: var(--space-lg);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.consultation-section h4 {
+    color: var(--white);
+    margin-bottom: var(--space-sm);
+    text-align: center;
+    font-size: var(--font-size-xl);
+}
+
+.consultation-offer {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: var(--radius-lg);
+    padding: var(--space-sm);
+    margin-bottom: var(--space-md);
+    text-align: center;
+}
+
+.consultation-offer h5 {
+    color: var(--accent-gold);
+    margin-bottom: var(--space-xs);
+    font-size: var(--font-size-lg);
+}
+
+.consultation-offer p {
+    margin-bottom: var(--space-sm);
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.additional-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    align-items: center;
+}
+
+.additional-info > div:first-child {
+    text-align: left;
+}
+
+.additional-info > div:last-child {
+    text-align: center;
+}
+
+.additional-info p {
+    margin-bottom: var(--space-xs);
+    font-size: var(--font-size-base);
+}
+
+.additional-info small {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-top: var(--space-xs);
 }
 
 /* SparkHub Section */
@@ -886,6 +995,25 @@ nav {
     
     .pricing-grid {
         grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    
+    .additional-info {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+        text-align: center;
+    }
+    
+    .additional-info > div:first-child {
+        text-align: center;
+    }
+    
+    .features-list {
+        grid-template-columns: 1fr;
+    }
+    
+    .pricing-card.featured {
+        transform: none;
     }
     
     .container {
