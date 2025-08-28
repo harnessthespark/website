@@ -378,8 +378,8 @@ class HarnessTheSparkApp {
             // Track form submission
             this.trackEvent('form', 'submit', 'contact_form', data.service);
 
-            // For now, simulate sending (replace with actual form handler)
-            await this.simulateFormSubmission(data);
+            // Send to backend (replace contact-handler.php with your preferred backend)
+            await this.submitContactForm(data);
 
             // Show success message
             this.showNotification('Thank you! I\'ll be in touch within 24 hours.', 'success');
@@ -465,22 +465,23 @@ class HarnessTheSparkApp {
     }
 
     /**
-     * Simulate form submission (replace with actual backend)
+     * Submit contact form to backend
      */
-    async simulateFormSubmission(data) {
-        return new Promise((resolve, reject) => {
-            setTimeout(() => {
-                // Log to console for now (replace with actual API call)
-                console.log('Contact form submission:', data);
-                
-                // Simulate success/failure
-                if (Math.random() > 0.1) { // 90% success rate
-                    resolve(data);
-                } else {
-                    reject(new Error('Network error'));
-                }
-            }, 1000);
+    async submitContactForm(data) {
+        const response = await fetch('/contact-handler.php', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
         });
+
+        if (!response.ok) {
+            const error = await response.json();
+            throw new Error(error.error || 'Network error');
+        }
+
+        return await response.json();
     }
 
     /**
