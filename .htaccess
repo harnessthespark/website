@@ -1,0 +1,212 @@
+# Harness the Spark - Production .htaccess Configuration
+# =====================================================
+
+# Security Headers
+Header always set X-Content-Type-Options "nosniff"
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set X-XSS-Protection "1; mode=block"
+Header always set Referrer-Policy "strict-origin-when-cross-origin"
+Header always set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+
+# Content Security Policy
+Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://static.hotjar.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com; img-src 'self' data: https: blob:; connect-src 'self' https://www.google-analytics.com https://stats.g.doubleclick.net; frame-src 'self' https://www.google.com; object-src 'none'; base-uri 'self'"
+
+# HSTS (HTTP Strict Transport Security)
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+
+# Force HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Remove www
+RewriteCond %{HTTP_HOST} ^www\.(.*)$ [NC]
+RewriteRule ^(.*)$ https://%1%{REQUEST_URI} [R=301,L]
+
+# Compression
+<IfModule mod_deflate.c>
+    # Compress HTML, CSS, JavaScript, Text, XML and fonts
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/vnd.ms-fontobject
+    AddOutputFilterByType DEFLATE application/x-font
+    AddOutputFilterByType DEFLATE application/x-font-opentype
+    AddOutputFilterByType DEFLATE application/x-font-otf
+    AddOutputFilterByType DEFLATE application/x-font-truetype
+    AddOutputFilterByType DEFLATE application/x-font-ttf
+    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE font/opentype
+    AddOutputFilterByType DEFLATE font/otf
+    AddOutputFilterByType DEFLATE font/ttf
+    AddOutputFilterByType DEFLATE image/svg+xml
+    AddOutputFilterByType DEFLATE image/x-icon
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/xml
+
+    # Remove browser bugs (only needed for really old browsers)
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+    Header append Vary User-Agent
+</IfModule>
+
+# Browser Caching
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpg "access plus 1 year"
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType image/webp "access plus 1 year"
+    ExpiresByType image/avif "access plus 1 year"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # Video
+    ExpiresByType video/mp4 "access plus 1 year"
+    ExpiresByType video/webm "access plus 1 year"
+    
+    # Fonts
+    ExpiresByType font/ttf "access plus 1 year"
+    ExpiresByType font/otf "access plus 1 year"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    ExpiresByType application/font-woff2 "access plus 1 year"
+    
+    # CSS and JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+    
+    # Other
+    ExpiresByType application/pdf "access plus 1 month"
+    ExpiresByType text/x-javascript "access plus 1 month"
+    ExpiresByType application/x-shockwave-flash "access plus 1 month"
+    ExpiresByType image/x-icon "access plus 1 year"
+    
+    # HTML
+    ExpiresByType text/html "access plus 600 seconds"
+</IfModule>
+
+# Cache-Control Headers
+<IfModule mod_headers.c>
+    # 1 Year for images and fonts
+    <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|svg|js|css|swf|woff|woff2|ttf|otf)$">
+        Header set Cache-Control "max-age=31536000, public"
+    </FilesMatch>
+    
+    # 1 Week for HTML
+    <FilesMatch "\.(html|htm)$">
+        Header set Cache-Control "max-age=604800, public, must-revalidate"
+    </FilesMatch>
+    
+    # 1 Day for feeds and XML
+    <FilesMatch "\.(rss|atom|xml)$">
+        Header set Cache-Control "max-age=86400, public"
+    </FilesMatch>
+</IfModule>
+
+# Pretty URLs / Clean URLs
+RewriteEngine On
+
+# Remove .html extension from URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+# Remove .html if directly accessed
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1 [NC,L,R=301]
+
+# Custom Error Pages
+ErrorDocument 400 /error-400.html
+ErrorDocument 401 /error-401.html
+ErrorDocument 403 /error-403.html
+ErrorDocument 404 /error-404.html
+ErrorDocument 500 /error-500.html
+ErrorDocument 502 /error-502.html
+ErrorDocument 503 /error-503.html
+
+# Prevent access to sensitive files
+<FilesMatch "\.(env|log|git|svn|htaccess|htpasswd|ini|phps|fla|psd|log|sh)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
+
+# Block access to directories
+Options -Indexes
+
+# Prevent access to version control
+RedirectMatch 404 /\.git
+
+# Prevent access to backup files
+<FilesMatch "\.(bak|config|dist|fla|inc|ini|log|psd|sh|sql|swp)$">
+    Order allow,deny
+    Deny from all
+    Satisfy All
+</FilesMatch>
+
+# MIME Types
+AddType application/javascript .js
+AddType text/css .css
+AddType image/svg+xml .svg
+AddType application/vnd.ms-fontobject .eot
+AddType application/x-font-ttf .ttf
+AddType application/x-font-woff .woff
+AddType application/x-font-woff2 .woff2
+AddType image/webp .webp
+AddType image/avif .avif
+
+# Sitemap
+RewriteRule ^sitemap\.xml$ sitemap.php [L]
+
+# Service Worker
+<Files "sw.js">
+    Header set Service-Worker-Allowed "/"
+    Header set Cache-Control "no-cache"
+</Files>
+
+# Manifest
+<Files "manifest.json">
+    Header set Content-Type "application/manifest+json"
+</Files>
+
+# Security - Hide server signature
+ServerTokens Prod
+
+# PHP Security (if PHP is used)
+<IfModule mod_php7.c>
+    php_flag display_startup_errors off
+    php_flag display_errors off
+    php_flag html_errors off
+    php_flag log_errors on
+    php_flag ignore_repeated_errors off
+    php_flag ignore_repeated_source off
+    php_flag report_memleaks on
+    php_flag track_errors on
+    php_value docref_root 0
+    php_value docref_ext 0
+    php_value error_log /var/log/php_errors.log
+    php_value error_reporting -1
+    php_value log_errors_max_len 0
+</IfModule>
+
+# Hotlink Protection
+RewriteCond %{HTTP_REFERER} !^$
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?harnessthespark\.com [NC]
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?google\. [NC]
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?bing\. [NC]
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?facebook\. [NC]
+RewriteCond %{HTTP_REFERER} !^https?://(www\.)?linkedin\. [NC]
+RewriteRule \.(jpg|jpeg|png|gif|svg|webp|avif)$ - [NC,F,L]
+
+# Prevent image hotlinking with custom image
+# RewriteRule \.(jpg|jpeg|png|gif|svg)$ /images/hotlink-protection.png [R,L]

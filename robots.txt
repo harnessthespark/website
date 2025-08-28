@@ -1,0 +1,70 @@
+# Robots.txt for Harness the Spark
+# https://harnessthespark.com/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://harnessthespark.com/sitemap.xml
+
+# Disallow sensitive areas
+Disallow: /admin/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /cgi-bin/
+Disallow: /.git/
+Disallow: /.htaccess
+Disallow: /.htpasswd
+Disallow: /error/
+Disallow: /*?*
+Disallow: /search?
+Disallow: /*utm_*
+
+# Allow important files
+Allow: /styles.css
+Allow: /script.js
+Allow: /manifest.json
+Allow: /sw.js
+Allow: /*.css
+Allow: /*.js
+Allow: /*.png
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
+Allow: /*.avif
+Allow: /*.ico
+Allow: /*.woff
+Allow: /*.woff2
+Allow: /*.ttf
+Allow: /*.eot
+
+# Crawl-delay for different bots
+User-agent: Googlebot
+Crawl-delay: 1
+
+User-agent: Bingbot
+Crawl-delay: 2
+
+User-agent: Slurp
+Crawl-delay: 2
+
+User-agent: DuckDuckBot
+Crawl-delay: 1
+
+# Block bad bots
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+# Host specification
+Host: https://harnessthespark.com

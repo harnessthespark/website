@@ -1,151 +1,140 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Harness the Spark - Turn Different Thinking Into Your Competitive Edge</title>
-    <link href="style.css" rel="stylesheet" />
-    <style>
-      /* Additional styles for new sections */
-      .audience-selector {
-        text-align: center;
-        padding: 40px 20px;
-        background: rgba(255, 255, 255, 0.02);
-        margin: 40px 0;
-        border-radius: 20px;
-      }
-      
-      .audience-question {
-        font-size: 2rem;
-        margin-bottom: 30px;
-        color: #fff;
-      }
-      
-      .audience-buttons {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        flex-wrap: wrap;
-      }
-      
-      .audience-btn {
-        padding: 20px 40px;
-        font-size: 1.2rem;
-        border: 2px solid;
-        border-radius: 10px;
-        background: transparent;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        text-decoration: none;
-      }
-      
-      .individual-btn {
-        border-color: #d71894;
-        color: #d71894;
-      }
-      
-      .individual-btn:hover {
-        background: #d71894;
-        color: white;
-        transform: translateY(-3px);
-        box-shadow: 0 10px 30px rgba(215, 24, 148, 0.3);
-      }
-      
-      .company-btn {
-        border-color: #44ff88;
-        color: #44ff88;
-      }
-      
-      .company-btn:hover {
-        background: #44ff88;
-        color: #0a0a0a;
-        transform: translateY(-3px);
-        box-shadow: 0 10px 30px rgba(68, 255, 136, 0.3);
-      }
-      
-      .truth-section {
-        padding: 60px 20px;
-        max-width: 1200px;
-        margin: 0 auto;
-      }
-      
-      .truth-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-        gap: 40px;
-        margin-top: 40px;
-      }
-      
-      @media (max-width: 768px) {
-        .truth-grid {
-          grid-template-columns: 1fr;
-        }
-      }
-      
-      .truth-column h3 {
-        font-size: 1.8rem;
-        margin-bottom: 25px;
-        font-weight: 700;
-      }
-      
-      .broken-column h3 {
-        color: #ff4444;
-      }
-      
-      .building-column h3 {
-        color: #44ff88;
-      }
-      
-      .truth-item {
-        margin-bottom: 15px;
-        padding: 15px;
-        background: rgba(255, 255, 255, 0.03);
-        border-radius: 8px;
-        border-left: 3px solid;
-        transition: all 0.3s ease;
-      }
-      
-      .broken-item {
-        border-left-color: #ff4444;
-      }
-      
-      .broken-item:hover {
-        background: rgba(255, 68, 68, 0.05);
-        transform: translateX(5px);
-      }
-      
-      .building-item {
-        border-left-color: #44ff88;
-      }
-      
-      .building-item:hover {
-        background: rgba(68, 255, 136, 0.05);
-        transform: translateX(5px);
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Canvas must be here -->
-    <canvas id="sparksCanvas"></canvas>
+<html lang="en-GB" prefix="og: http://ogp.me/ns#">
+<head>
+    <!-- Performance Hints -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     
-    <nav>
-      <div class="container">
-        <div class="nav-wrapper">
-          <a href="index.html" class="logo">
-            <img src="logo.png" alt="Harness the Spark" class="logo-icon">
-            <div class="logo-text">
-              <span class="text-main">Harness the Spark</span>
-            </div>
-          </a>
-          <div class="link-container">
-            <a href="intro.html">About</a>
-            <a href="contactus.html">Contact</a>
-            <a href="work.html">Solutions</a>
-            <a href="insights.html">News</a>
-          </div>
-        </div>
-      </div>
-    </nav>
+    <!-- Essential Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Title & Description -->
+    <title>Lisa Gills - Harness the Spark | Transform Your Obstacles Into Opportunities | Cognitive Diversity Coach</title>
+    <meta name="description" content="Transform obstacles into opportunities with cognitive diversity coaching. Lisa Gills helps business owners and individuals harness their unique spark through personalised transformation frameworks. SparkHub platform launching 2025.">
+    <meta name="keywords" content="cognitive diversity, neurodivergent coaching, business transformation, ADHD coaching, autism coaching, executive coaching, SparkHub, Lisa Gills, career coaching">
+    <meta name="author" content="Lisa Gills">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://harnessthespark.com/">
+    <meta property="og:title" content="Lisa Gills - Harness the Spark | Transform Your Obstacles Into Opportunities">
+    <meta property="og:description" content="Transform obstacles into opportunities with cognitive diversity coaching. Personalised transformation frameworks for business owners and individuals.">
+    <meta property="og:image" content="https://harnessthespark.com/images/og-image.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="Harness the Spark">
+    <meta property="og:locale" content="en_GB">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://harnessthespark.com/">
+    <meta property="twitter:title" content="Lisa Gills - Harness the Spark | Transform Your Obstacles Into Opportunities">
+    <meta property="twitter:description" content="Transform obstacles into opportunities with cognitive diversity coaching. Personalised transformation frameworks for business owners and individuals.">
+    <meta property="twitter:image" content="https://harnessthespark.com/images/twitter-card.jpg">
+    <meta property="twitter:creator" content="@lisagills">
+    <meta property="twitter:site" content="@harnessthespark">
+    
+    <!-- Additional Meta Tags -->
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="theme-color" content="#8B5CF6">
+    <meta name="color-scheme" content="light">
+    <meta name="format-detection" content="telephone=yes">
+    
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://harnessthespark.com/">
+    
+    <!-- Favicons -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/manifest.json">
+    
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="/styles.css" as="style">
+    <link rel="preload" href="/script.js" as="script">
+    
+    <!-- Stylesheets -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" media="print" onload="this.media='all'">
+    <noscript><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet"></noscript>
+    <link href="/styles.css" rel="stylesheet">
+    
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Harness the Spark",
+        "description": "Cognitive diversity coaching and business transformation services specialising in turning obstacles into opportunities.",
+        "url": "https://harnessthespark.com",
+        "logo": "https://harnessthespark.com/images/logo.png",
+        "image": "https://harnessthespark.com/images/lisa-gills-coach.jpg",
+        "telephone": "+44-XXXX-XXXXXX",
+        "email": "lisa@harnessthespark.com",
+        "address": {
+            "@type": "PostalAddress",
+            "addressCountry": "GB"
+        },
+        "founder": {
+            "@type": "Person",
+            "name": "Lisa Gills",
+            "jobTitle": "Cognitive Diversity Coach & Business Transformation Specialist",
+            "description": "Experienced coach specialising in helping neurodivergent individuals and business owners transform obstacles into opportunities.",
+            "image": "https://harnessthespark.com/images/lisa-gills-profile.jpg",
+            "sameAs": [
+                "https://www.linkedin.com/in/lisagills/",
+                "https://twitter.com/lisagills"
+            ]
+        },
+        "serviceType": [
+            "Cognitive Diversity Coaching",
+            "Business Transformation",
+            "Executive Coaching",
+            "Career Development",
+            "Neurodivergent Support"
+        ],
+        "areaServed": {
+            "@type": "Country",
+            "name": "United Kingdom"
+        },
+        "priceRange": "£295-£7,997"
+    }
+    </script>
+    
+    <!-- Google Analytics (placeholder - replace with actual tracking code) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+</head>
+  <body itemscope itemtype="https://schema.org/WebPage">
+    <!-- Skip Link for Accessibility -->
+    <a href="#main-content" class="skip-link sr-only">Skip to main content</a>
+
+    <!-- Header -->
+    <header role="banner" aria-label="Site navigation">
+        <nav class="container" role="navigation" aria-label="Primary navigation">
+            <a href="/" class="logo" aria-label="Harness the Spark - Home">
+                <div class="spark-icon" aria-hidden="true">
+                    <i class="fas fa-bolt"></i>
+                </div>
+                <span>Harness the Spark</span>
+            </a>
+            <ul class="nav-links" role="menubar">
+                <li role="none"><a href="#services" role="menuitem">Services</a></li>
+                <li role="none"><a href="#sparkhub" role="menuitem">SparkHub</a></li>
+                <li role="none"><a href="#about" role="menuitem">About</a></li>
+                <li role="none"><a href="#contact" role="menuitem">Contact</a></li>
+            </ul>
+            <a href="#contact" class="cta-button" role="button" aria-label="Get started with transformation coaching">Get Started</a>
+        </nav>
+    </header>
 
     <div class="hero-section">
       <div class="container">

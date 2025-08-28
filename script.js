@@ -1,195 +1,714 @@
-document.addEventListener("DOMContentLoaded", function () {
-  // Notify button functionality
-  const button = document.getElementById("notifyBtn");
+/**
+ * Harness the Spark - Main JavaScript File
+ * Production-ready with performance optimizations and accessibility features
+ */
 
-  button.addEventListener("click", function () {
-    const email = prompt("Enter your email:");
-
-    if (email && email.includes("@")) {
-      // Show success message
-      alert("Thanks! We'll notify you at " + email);
-
-      // Change button appearance
-      const originalText = this.textContent;
-      this.textContent = "✓ Added to Waitlist";
-      this.style.background = "linear-gradient(135deg, #10b981, #059669)";
-
-      // Reset after 2 seconds
-      setTimeout(() => {
-        this.textContent = originalText;
-        this.style.background = "";
-      }, 2000);
-    } else if (email) {
-      alert("Please enter a valid email");
-    }
-  });
-
-  // Canvas animation code starts here
-  const canvas = document.getElementById("sparksCanvas");
-  const ctx = canvas.getContext("2d");
-
-  // Set canvas size
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
-
-  // Spark particle class
-  class Spark {
+class HarnessTheSparkApp {
     constructor() {
-      this.reset();
-      // Random starting position
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
+        this.init();
+        this.bindEvents();
+        this.setupPerformanceObserver();
+        this.setupAccessibility();
     }
 
-    reset() {
-      this.x = Math.random() * canvas.width;
-      this.y = canvas.height + 10;
-      this.vx = (Math.random() - 0.5) * 3; // Increased horizontal spread
-      this.vy = -Math.random() * 4 - 2; // Faster upward movement
-      this.life = 1;
-      this.decay = Math.random() * 0.008 + 0.003; // Slower decay for longer life
-      this.size = Math.random() * 4 + 2; // Larger sparks
-
-      // More fiery colors - oranges, reds, yellows
-      const colors = [
-        "255, 69, 0", // Red-orange (very fiery)
-        "255, 140, 0", // Dark orange
-        "255, 200, 0", // Gold
-        "255, 100, 0", // Orange
-        "255, 50, 0", // Deep red-orange
-        "255, 255, 100", // Bright yellow
-        "255, 0, 0", // Pure red
-        "255, 165, 0", // Orange
-      ];
-      this.color = colors[Math.floor(Math.random() * colors.length)];
-
-      // Add flickering effect
-      this.flicker = Math.random() * 0.5 + 0.5;
-
-      // More turbulent movement
-      this.drift = (Math.random() - 0.5) * 1; // Increased drift
-      this.turbulence = Math.random() * 0.5; // Add turbulence factor
-    }
-
-    update() {
-      // Physics with more fire-like movement
-      this.x +=
-        this.vx + this.drift + Math.sin(Date.now() * 0.001) * this.turbulence;
-      this.y += this.vy;
-      this.vy += 0.03; // Slightly stronger gravity
-      this.life -= this.decay;
-
-      // Add flickering
-      this.flicker = 0.5 + Math.random() * 0.5;
-
-      // More chaotic horizontal movement
-      this.vx += (Math.random() - 0.5) * 0.3;
-
-      // Wind effect
-      this.drift += (Math.random() - 0.5) * 0.1;
-
-      // Reset if dead or off screen
-      if (this.life <= 0 || this.y < -10) {
-        this.reset();
-      }
-    }
-
-    draw() {
-      ctx.save();
-
-      // Enhanced glowing effect for fire
-      ctx.shadowBlur = 20 * this.flicker;
-      ctx.shadowColor = `rgba(${this.color}, ${this.life * this.flicker})`;
-
-      // Draw main spark with flickering
-      ctx.globalAlpha = this.life * this.flicker;
-
-      // Create gradient for more realistic fire
-      const gradient = ctx.createRadialGradient(
-        this.x,
-        this.y,
-        0,
-        this.x,
-        this.y,
-        this.size
-      );
-      gradient.addColorStop(0, `rgba(255, 255, 255, ${this.life})`); // White hot center
-      gradient.addColorStop(0.3, `rgba(${this.color}, ${this.life})`);
-      gradient.addColorStop(1, `rgba(${this.color}, 0)`);
-
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size * this.flicker, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Add ember trail effect
-      ctx.globalAlpha = this.life * 0.3;
-      ctx.fillStyle = `rgba(255, 50, 0, ${this.life * 0.5})`;
-      for (let i = 1; i < 4; i++) {
-        ctx.beginPath();
-        ctx.arc(
-          this.x - this.vx * i * 1.5,
-          this.y - this.vy * i * 1.5,
-          this.size * (1 - i * 0.2),
-          0,
-          Math.PI * 2
-        );
-        ctx.fill();
-      }
-
-      ctx.restore();
-    }
-  }
-
-  // Create sparks array
-  const sparks = [];
-  const sparkCount = 150; // More sparks for denser effect
-
-  for (let i = 0; i < sparkCount; i++) {
-    sparks.push(new Spark());
-  }
-
-  // Animation loop
-  function animate() {
-    // Darker trail for more contrast with bright sparks
-    ctx.fillStyle = "rgba(0, 0, 0, 0.15)"; // Darker, more opaque
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    // Update and draw sparks
-    sparks.forEach((spark) => {
-      spark.update();
-      spark.draw();
-    });
-
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-
-  // Add mouse interaction - create fire burst on mouse move
-  canvas.addEventListener("mousemove", (e) => {
-    // Create more sparks on mouse movement for fire effect
-    for (let i = 0; i < 4; i++) {
-      // Multiple sparks per mouse move
-      if (Math.random() > 0.3) {
-        // Higher chance of spark creation
-        const spark = new Spark();
-        spark.x = e.clientX + (Math.random() - 0.5) * 10;
-        spark.y = e.clientY + (Math.random() - 0.5) * 10;
-        spark.vy = -Math.random() * 6 - 3; // Stronger upward burst
-        spark.vx = (Math.random() - 0.5) * 8; // More spread
-        spark.size = Math.random() * 5 + 3; // Larger mouse sparks
-        sparks.push(spark);
-
-        // Remove oldest spark if too many
-        if (sparks.length > sparkCount * 2) {
-          sparks.shift();
+    /**
+     * Initialize the application
+     */
+    init() {
+        // Wait for DOM to be ready
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', () => {
+                this.setupApp();
+            });
+        } else {
+            this.setupApp();
         }
-      }
     }
-  });
-}); // This closes DOMContentLoaded
+
+    /**
+     * Setup the main application functionality
+     */
+    setupApp() {
+        this.setupSmoothScrolling();
+        this.setupHeaderScrollEffect();
+        this.setupAnimations();
+        this.setupFormValidation();
+        this.setupLazyLoading();
+        this.setupServiceWorker();
+        
+        // Analytics
+        this.trackPageLoad();
+        
+        console.log('🚀 Harness the Spark website loaded successfully');
+    }
+
+    /**
+     * Bind all event listeners
+     */
+    bindEvents() {
+        // Scroll events (throttled)
+        let scrollTimeout;
+        window.addEventListener('scroll', () => {
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+            scrollTimeout = setTimeout(() => {
+                this.handleScroll();
+            }, 16); // ~60fps
+        }, { passive: true });
+
+        // Resize events (debounced)
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+            if (resizeTimeout) {
+                clearTimeout(resizeTimeout);
+            }
+            resizeTimeout = setTimeout(() => {
+                this.handleResize();
+            }, 250);
+        }, { passive: true });
+
+        // Form submissions
+        document.addEventListener('submit', (e) => {
+            this.handleFormSubmission(e);
+        });
+
+        // Button clicks with analytics
+        document.addEventListener('click', (e) => {
+            if (e.target.matches('.cta-button, .btn-primary, .btn-secondary')) {
+                this.trackButtonClick(e.target);
+            }
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            this.handleKeyboardNavigation(e);
+        });
+
+        // Intersection Observer for animations
+        this.setupIntersectionObserver();
+    }
+
+    /**
+     * Setup smooth scrolling for anchor links
+     */
+    setupSmoothScrolling() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(anchor.getAttribute('href'));
+                
+                if (target) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = target.offsetTop - headerHeight - 20;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+
+                    // Update URL without triggering scroll
+                    history.pushState(null, null, anchor.getAttribute('href'));
+                    
+                    // Track navigation
+                    this.trackNavigation(anchor.getAttribute('href'));
+                }
+            });
+        });
+    }
+
+    /**
+     * Setup header scroll effects
+     */
+    setupHeaderScrollEffect() {
+        const header = document.querySelector('header');
+        let lastScrollTop = 0;
+
+        this.handleScroll = () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            // Add scrolled class for styling
+            if (scrollTop > 100) {
+                header.classList.add('header--scrolled');
+            } else {
+                header.classList.remove('header--scrolled');
+            }
+
+            // Hide/show header on scroll (optional)
+            if (scrollTop > lastScrollTop && scrollTop > 200) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = scrollTop;
+        };
+    }
+
+    /**
+     * Setup intersection observer for scroll animations
+     */
+    setupIntersectionObserver() {
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                    // Stop observing once animated
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements that should animate on scroll
+        const animateElements = document.querySelectorAll(
+            '.service-card, .transformation-story, .sparkhub-content, .about-content, .contact-option'
+        );
+
+        animateElements.forEach(el => {
+            el.classList.add('animate-on-scroll');
+            observer.observe(el);
+        });
+    }
+
+    /**
+     * Setup animations and transitions
+     */
+    setupAnimations() {
+        // Add CSS classes for animations
+        const style = document.createElement('style');
+        style.textContent = `
+            .animate-on-scroll {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            }
+            
+            .animate-on-scroll.animate-in {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .animate-on-scroll:nth-child(2) { transition-delay: 0.1s; }
+            .animate-on-scroll:nth-child(3) { transition-delay: 0.2s; }
+            .animate-on-scroll:nth-child(4) { transition-delay: 0.3s; }
+        `;
+        document.head.appendChild(style);
+    }
+
+    /**
+     * Setup form validation and handling
+     */
+    setupFormValidation() {
+        const forms = document.querySelectorAll('form');
+        
+        forms.forEach(form => {
+            // Real-time validation
+            form.addEventListener('input', (e) => {
+                this.validateField(e.target);
+            });
+
+            // Focus events for better UX
+            form.addEventListener('focusin', (e) => {
+                e.target.parentElement?.classList.add('field-focused');
+            });
+
+            form.addEventListener('focusout', (e) => {
+                e.target.parentElement?.classList.remove('field-focused');
+                this.validateField(e.target);
+            });
+        });
+    }
+
+    /**
+     * Validate individual form fields
+     */
+    validateField(field) {
+        const value = field.value.trim();
+        const type = field.type;
+        const required = field.hasAttribute('required');
+        
+        let isValid = true;
+        let errorMessage = '';
+
+        // Required field validation
+        if (required && !value) {
+            isValid = false;
+            errorMessage = 'This field is required';
+        }
+
+        // Email validation
+        if (type === 'email' && value) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(value)) {
+                isValid = false;
+                errorMessage = 'Please enter a valid email address';
+            }
+        }
+
+        // Phone validation
+        if (type === 'tel' && value) {
+            const phoneRegex = /^[\+]?[\d\s\-\(\)]{10,}$/;
+            if (!phoneRegex.test(value)) {
+                isValid = false;
+                errorMessage = 'Please enter a valid phone number';
+            }
+        }
+
+        // Update field state
+        field.classList.toggle('field-error', !isValid);
+        field.classList.toggle('field-valid', isValid && value);
+
+        // Update error message
+        const existingError = field.parentElement?.querySelector('.field-error-message');
+        if (existingError) {
+            existingError.remove();
+        }
+
+        if (!isValid && errorMessage) {
+            const errorEl = document.createElement('div');
+            errorEl.className = 'field-error-message';
+            errorEl.textContent = errorMessage;
+            errorEl.setAttribute('role', 'alert');
+            field.parentElement?.appendChild(errorEl);
+        }
+
+        return isValid;
+    }
+
+    /**
+     * Handle form submissions
+     */
+    handleFormSubmission(e) {
+        const form = e.target;
+        const fields = form.querySelectorAll('input, textarea, select');
+        let isFormValid = true;
+
+        // Validate all fields
+        fields.forEach(field => {
+            if (!this.validateField(field)) {
+                isFormValid = false;
+            }
+        });
+
+        if (!isFormValid) {
+            e.preventDefault();
+            
+            // Focus on first error field
+            const firstError = form.querySelector('.field-error');
+            if (firstError) {
+                firstError.focus();
+                firstError.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+
+            // Show error notification
+            this.showNotification('Please correct the errors before submitting', 'error');
+            return;
+        }
+
+        // Handle successful submission
+        this.trackFormSubmission(form);
+        this.showNotification('Thank you! Your message has been sent.', 'success');
+    }
+
+    /**
+     * Setup lazy loading for images
+     */
+    setupLazyLoading() {
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                        }
+                        img.classList.remove('lazy');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                img.classList.add('lazy');
+                imageObserver.observe(img);
+            });
+        }
+    }
+
+    /**
+     * Setup service worker for caching
+     */
+    async setupServiceWorker() {
+        if ('serviceWorker' in navigator) {
+            try {
+                const registration = await navigator.serviceWorker.register('/sw.js');
+                console.log('Service Worker registered:', registration);
+            } catch (error) {
+                console.log('Service Worker registration failed:', error);
+            }
+        }
+    }
+
+    /**
+     * Setup accessibility features
+     */
+    setupAccessibility() {
+        // Skip link functionality
+        const skipLink = document.createElement('a');
+        skipLink.href = '#main-content';
+        skipLink.textContent = 'Skip to main content';
+        skipLink.className = 'skip-link sr-only';
+        skipLink.addEventListener('focus', () => skipLink.classList.remove('sr-only'));
+        skipLink.addEventListener('blur', () => skipLink.classList.add('sr-only'));
+        document.body.insertBefore(skipLink, document.body.firstChild);
+
+        // Announce dynamic content changes to screen readers
+        this.ariaLiveRegion = document.createElement('div');
+        this.ariaLiveRegion.setAttribute('aria-live', 'polite');
+        this.ariaLiveRegion.setAttribute('aria-atomic', 'true');
+        this.ariaLiveRegion.className = 'sr-only';
+        document.body.appendChild(this.ariaLiveRegion);
+
+        // Enhanced focus management
+        this.setupFocusManagement();
+    }
+
+    /**
+     * Setup focus management for better keyboard navigation
+     */
+    setupFocusManagement() {
+        let lastFocusedElement = null;
+
+        document.addEventListener('focusin', (e) => {
+            lastFocusedElement = e.target;
+        });
+
+        // Trap focus in modals (if any)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Tab') {
+                const modal = document.querySelector('[role="dialog"][aria-modal="true"]');
+                if (modal) {
+                    this.trapFocusInModal(e, modal);
+                }
+            }
+        });
+    }
+
+    /**
+     * Handle keyboard navigation
+     */
+    handleKeyboardNavigation(e) {
+        // Escape key to close modals or menus
+        if (e.key === 'Escape') {
+            const openModal = document.querySelector('[role="dialog"][aria-modal="true"]');
+            if (openModal) {
+                this.closeModal(openModal);
+            }
+        }
+
+        // Enter/Space for buttons
+        if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('[role="button"]')) {
+            e.preventDefault();
+            e.target.click();
+        }
+    }
+
+    /**
+     * Handle window resize
+     */
+    handleResize() {
+        // Recalculate any dynamic measurements
+        this.updateViewportHeight();
+    }
+
+    /**
+     * Update viewport height for mobile browsers
+     */
+    updateViewportHeight() {
+        const vh = window.innerHeight * 0.01;
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
+    }
+
+    /**
+     * Show notifications to users
+     */
+    showNotification(message, type = 'info') {
+        // Remove existing notifications
+        const existingNotifications = document.querySelectorAll('.notification');
+        existingNotifications.forEach(notification => notification.remove());
+
+        const notification = document.createElement('div');
+        notification.className = `notification notification--${type}`;
+        notification.setAttribute('role', 'alert');
+        notification.innerHTML = `
+            <div class="notification__content">
+                <span class="notification__message">${message}</span>
+                <button class="notification__close" aria-label="Close notification">×</button>
+            </div>
+        `;
+
+        // Add styles
+        const styles = `
+            .notification {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 1.5rem;
+                border-radius: 8px;
+                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+                z-index: 10000;
+                max-width: 400px;
+                animation: slideInRight 0.3s ease-out;
+            }
+            
+            .notification--success {
+                background: #10b981;
+                color: white;
+            }
+            
+            .notification--error {
+                background: #ef4444;
+                color: white;
+            }
+            
+            .notification--info {
+                background: #3b82f6;
+                color: white;
+            }
+            
+            .notification__content {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 1rem;
+            }
+            
+            .notification__close {
+                background: none;
+                border: none;
+                color: currentColor;
+                font-size: 1.5rem;
+                cursor: pointer;
+                padding: 0;
+                line-height: 1;
+            }
+            
+            @keyframes slideInRight {
+                from {
+                    transform: translateX(100%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateX(0);
+                    opacity: 1;
+                }
+            }
+        `;
+
+        if (!document.querySelector('#notification-styles')) {
+            const styleSheet = document.createElement('style');
+            styleSheet.id = 'notification-styles';
+            styleSheet.textContent = styles;
+            document.head.appendChild(styleSheet);
+        }
+
+        document.body.appendChild(notification);
+
+        // Auto-remove after 5 seconds
+        setTimeout(() => {
+            if (notification.parentElement) {
+                notification.remove();
+            }
+        }, 5000);
+
+        // Close button handler
+        notification.querySelector('.notification__close').addEventListener('click', () => {
+            notification.remove();
+        });
+
+        // Announce to screen readers
+        if (this.ariaLiveRegion) {
+            this.ariaLiveRegion.textContent = message;
+        }
+    }
+
+    /**
+     * Setup performance observer
+     */
+    setupPerformanceObserver() {
+        if ('PerformanceObserver' in window) {
+            // Largest Contentful Paint
+            const lcpObserver = new PerformanceObserver((entryList) => {
+                const entries = entryList.getEntries();
+                const lastEntry = entries[entries.length - 1];
+                console.log('LCP:', lastEntry.startTime);
+                this.trackPerformance('lcp', lastEntry.startTime);
+            });
+
+            try {
+                lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
+            } catch (e) {
+                // Fallback for browsers that don't support LCP
+            }
+
+            // First Input Delay
+            const fidObserver = new PerformanceObserver((entryList) => {
+                const entries = entryList.getEntries();
+                entries.forEach(entry => {
+                    console.log('FID:', entry.processingStart - entry.startTime);
+                    this.trackPerformance('fid', entry.processingStart - entry.startTime);
+                });
+            });
+
+            try {
+                fidObserver.observe({ entryTypes: ['first-input'] });
+            } catch (e) {
+                // Fallback for browsers that don't support FID
+            }
+        }
+    }
+
+    // Analytics and tracking methods
+    trackPageLoad() {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                page_title: document.title,
+                page_location: window.location.href
+            });
+        }
+    }
+
+    trackButtonClick(button) {
+        const text = button.textContent.trim();
+        const href = button.href || '';
+        
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'click', {
+                event_category: 'Button',
+                event_label: text,
+                value: href
+            });
+        }
+
+        console.log('Button clicked:', text);
+    }
+
+    trackNavigation(anchor) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'navigation', {
+                event_category: 'Internal Link',
+                event_label: anchor
+            });
+        }
+    }
+
+    trackFormSubmission(form) {
+        const formName = form.getAttribute('name') || form.className || 'Unknown Form';
+        
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'form_submit', {
+                event_category: 'Form',
+                event_label: formName
+            });
+        }
+
+        console.log('Form submitted:', formName);
+    }
+
+    trackPerformance(metric, value) {
+        if (typeof gtag !== 'undefined') {
+            gtag('event', metric, {
+                event_category: 'Performance',
+                value: Math.round(value),
+                non_interaction: true
+            });
+        }
+    }
+}
+
+// Initialize the application
+new HarnessTheSparkApp();
+
+// Global utility functions
+window.HarnessTheSparkUtils = {
+    /**
+     * Debounce function to limit function calls
+     */
+    debounce(func, wait, immediate) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                timeout = null;
+                if (!immediate) func(...args);
+            };
+            const callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func(...args);
+        };
+    },
+
+    /**
+     * Throttle function to limit function calls
+     */
+    throttle(func, limit) {
+        let inThrottle;
+        return function(...args) {
+            if (!inThrottle) {
+                func.apply(this, args);
+                inThrottle = true;
+                setTimeout(() => inThrottle = false, limit);
+            }
+        };
+    },
+
+    /**
+     * Check if element is in viewport
+     */
+    isInViewport(element) {
+        const rect = element.getBoundingClientRect();
+        return (
+            rect.top >= 0 &&
+            rect.left >= 0 &&
+            rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+            rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+        );
+    },
+
+    /**
+     * Animate element into view
+     */
+    animateIntoView(element, animationClass = 'animate-in') {
+        element.classList.add(animationClass);
+    },
+
+    /**
+     * Format phone number
+     */
+    formatPhoneNumber(phoneNumber) {
+        const cleaned = phoneNumber.replace(/\D/g, '');
+        if (cleaned.length === 11 && cleaned.startsWith('0')) {
+            return cleaned.replace(/(\d{2})(\d{4})(\d{3})(\d{3})/, '$1 $2 $3 $4');
+        }
+        return phoneNumber;
+    },
+
+    /**
+     * Validate email address
+     */
+    isValidEmail(email) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+};
+
+// Export for module systems
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = HarnessTheSparkApp;
+}
